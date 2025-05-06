@@ -1,0 +1,175 @@
+"use client"
+
+import { useState, useEffect, useRef } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { Menu, X } from "lucide-react"
+
+export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [activeLink, setActiveLink] = useState("home")
+  const [isVisible, setIsVisible] = useState(false)
+  const navbarRef = useRef<HTMLDivElement>(null)
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setScrolled(true)
+      } else {
+        setScrolled(false)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+
+    // Set visible after a short delay for entrance animation
+    const timer = setTimeout(() => {
+      setIsVisible(true)
+    }, 500)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      clearTimeout(timer)
+    }
+  }, [])
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  const handleLinkClick = (link: string) => {
+    setActiveLink(link)
+    setIsMenuOpen(false)
+
+    // Smooth scroll to section
+    const element = document.getElementById(link)
+    if (element) {
+      // Add a class to the element for animation
+      element.classList.add("section-active")
+
+      // Remove the class after animation completes
+      setTimeout(() => {
+        element.classList.remove("section-active")
+      }, 1000)
+
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
+  return (
+    <nav
+      ref={navbarRef}
+      className={`fixed top-[39px] left-0 right-0 z-40 transition-all duration-700 ${scrolled ? "py-3" : "py-5"} ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
+      }`}
+    >
+      <div className="container mx-auto px-4">
+        <div
+          className={`relative w-[600px] max-w-full mx-auto backdrop-blur-2xl 
+          bg-white/20 dark:bg-black/20 
+          text-black dark:text-white 
+          rounded-full shadow-2xl 
+          transition-all duration-500 ease-in-out
+          border border-white/30 dark:border-white/10
+          hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] dark:hover:shadow-[0_0_30px_rgba(128,128,255,0.3)]
+          before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-b before:from-white/30 before:to-transparent before:pointer-events-none before:z-[-1]
+          after:absolute after:inset-0 after:rounded-full after:shadow-[inset_0_0_20px_rgba(255,255,255,0.2)] after:pointer-events-none after:z-[-1]
+          ${scrolled ? "scale-95" : "scale-100"}
+          animate-shimmer
+          `}
+        >
+          <div className="flex items-center justify-between px-8 py-3">
+            {/* Logo and Name */}
+            <div className="flex items-center space-x-3">
+              <div className="relative w-12 h-12 overflow-hidden rounded-full transition-transform duration-500 hover:scale-110 group">
+                <Image
+                  src="/coder.png"
+                  alt="Coder Logo"
+                  width={48}
+                  height={48}
+                  className="object-cover transition-all duration-700 group-hover:rotate-[360deg] group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/30 to-purple-500/0 opacity-0 group-hover:opacity-100 animate-shine"></div>
+              </div>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-gradient">
+                Ahnaf Shahriar
+              </h1>
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-10">
+              {["home", "about", "skills", "projects"].map((link) => (
+                <Link
+                  key={link}
+                  href={`#${link}`}
+                  onClick={() => handleLinkClick(link)}
+                  className={`relative text-lg font-medium transition-all duration-500 hover:text-purple-500 group overflow-hidden`}
+                >
+                  <span
+                    className={`capitalize transition-transform duration-500 inline-block ${
+                      activeLink === link ? "text-purple-500" : ""
+                    } group-hover:translate-y-[-100%]`}
+                  >
+                    {link}
+                  </span>
+                  <span className="absolute left-0 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 capitalize text-purple-500">
+                    {link}
+                  </span>
+                  <span
+                    className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-500 group-hover:w-full ${
+                      activeLink === link ? "w-full" : "w-0"
+                    }`}
+                  ></span>
+                </Link>
+              ))}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button
+                onClick={toggleMenu}
+                className={`p-2 rounded-full transition-all duration-300 hover:bg-white/20 dark:hover:bg-white/10 active:scale-95`}
+                aria-label="Toggle menu"
+              >
+                {isMenuOpen ? (
+                  <X size={24} className="animate-spin-once" />
+                ) : (
+                  <Menu size={24} className="animate-pulse-slow" />
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div
+            className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
+              isMenuOpen ? "max-h-[300px] opacity-100 mb-4" : "max-h-0 opacity-0"
+            }`}
+          >
+            <div
+              className={`flex flex-col space-y-4 py-4 px-6 mx-4 mb-4 rounded-2xl backdrop-blur-xl ${"bg-white/30 dark:bg-black/40"}`}
+            >
+              {["home", "about", "skills", "projects"].map((link) => (
+                <Link
+                  key={link}
+                  href={`#${link}`}
+                  onClick={() => handleLinkClick(link)}
+                  className={`px-4 py-2 rounded-lg transition-all duration-300 ${
+                    activeLink === link
+                      ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white scale-105 shadow-lg"
+                      : "hover:bg-white/20 dark:hover:bg-white/10 hover:scale-105"
+                  }`}
+                >
+                  <span className="capitalize">{link}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  )
+}

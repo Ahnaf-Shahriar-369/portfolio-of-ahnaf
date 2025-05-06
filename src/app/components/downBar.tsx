@@ -37,6 +37,15 @@ function DownBar() {
     }
   }, [])
 
+  // Apply dark mode class to document
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+    }
+  }, [isDarkMode])
+
   // Toggle play/pause state
   const togglePlayPause = () => {
     if (!audioRef.current) return
@@ -53,8 +62,6 @@ function DownBar() {
   // Toggle dark/light mode
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode)
-    // Here you would implement the actual dark mode functionality
-    // document.documentElement.classList.toggle('dark');
   }
 
   // Toggle language
