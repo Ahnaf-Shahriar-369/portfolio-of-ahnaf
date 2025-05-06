@@ -2,39 +2,28 @@
 
 import { useEffect } from "react"
 import Navbar from "./components/NavBar"
-import DownBar from "./components/downBar"
-
+import DownBar from "./components/downBar" // Make sure this import is correct
 
 export default function Home() {
-  // Add a gradient background to body
+  // Fix for the right side background issue
   useEffect(() => {
-    // document.body.classList.add("bg-gradient-to-b", "from-white", "to-gray-100", "dark:from-gray-900", "dark:to-black")
+    // Ensure no overflow on the body
+    document.body.style.overflow = "hidden"
+    document.body.style.overflowY = "auto"
+    document.body.style.width = "100%"
+    document.body.style.maxWidth = "100vw"
 
     return () => {
-      // document.body.classList.remove(
-      //   "bg-gradient-to-b",
-      //   "from-white",
-      //   "to-gray-100",
-      //   "dark:from-gray-900",
-      //   "dark:to-black",
-      //)
+      document.body.style.overflow = ""
+      document.body.style.width = ""
+      document.body.style.maxWidth = ""
     }
   }, [])
 
   return (
-    <><div className='container h-[3000px] bg-[#000000]'>
-
-
-
-
-
-
-
-
-
-
-<Navbar />
-      <main className="min-h-screen pt-32 px-4 transition-colors duration-500">
+    <>
+      <Navbar />
+      <main className="min-h-screen pt-32 px-4">
         <section
           id="home"
           className="min-h-screen flex items-center justify-center transition-all duration-500 rounded-3xl"
@@ -63,18 +52,9 @@ export default function Home() {
           <h1 className="text-4xl font-bold">Projects Section</h1>
         </section>
       </main>
+
+      {/* Explicitly render the DownBar component */}
       <DownBar />
-      </div>
     </>
   )
 }
-
-
-
-
-
-
-
-
-    
-      

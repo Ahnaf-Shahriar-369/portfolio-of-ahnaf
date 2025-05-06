@@ -10,9 +10,10 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [activeLink, setActiveLink] = useState("home")
   const [isVisible, setIsVisible] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const navbarRef = useRef<HTMLDivElement>(null)
 
-  // Handle scroll effect
+  // Handle scroll effect and loading
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -24,14 +25,20 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll)
 
-    // Set visible after a short delay for entrance animation
-    const timer = setTimeout(() => {
+    // Loading animation for 2 seconds (matching DownBar)
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false)
+    }, 2000)
+
+    // Set visible after loading completes
+    const visibilityTimer = setTimeout(() => {
       setIsVisible(true)
-    }, 500)
+    }, 2100) // 100ms after loading completes
 
     return () => {
       window.removeEventListener("scroll", handleScroll)
-      clearTimeout(timer)
+      clearTimeout(loadingTimer)
+      clearTimeout(visibilityTimer)
     }
   }, [])
 
@@ -58,6 +65,16 @@ export default function Navbar() {
     }
   }
 
+  if (isLoading) {
+    return (
+      <div className="fixed top-[39px] left-0 right-0 z-40 flex justify-center items-center">
+        <div className="w-[200px] h-[60px] backdrop-blur-xl bg-white/20 rounded-full shadow-lg flex justify-center items-center">
+          <p className="text-white text-lg font-medium loading-dots">Loading</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <nav
       ref={navbarRef}
@@ -67,22 +84,23 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4">
         <div
-          className={`relative w-[600px] max-w-full mx-auto backdrop-blur-2xl 
-          bg-white/20 dark:bg-black/20 
-          text-black dark:text-white 
+          className={`relative w-[800px] max-w-full mx-auto backdrop-blur-2xl 
+          bg-white/20
+          text-white
           rounded-full shadow-2xl 
           transition-all duration-500 ease-in-out
-          border border-white/30 dark:border-white/10
-          hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] dark:hover:shadow-[0_0_30px_rgba(128,128,255,0.3)]
+          border border-white/30
+          hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]
           before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-b before:from-white/30 before:to-transparent before:pointer-events-none before:z-[-1]
           after:absolute after:inset-0 after:rounded-full after:shadow-[inset_0_0_20px_rgba(255,255,255,0.2)] after:pointer-events-none after:z-[-1]
           ${scrolled ? "scale-95" : "scale-100"}
           animate-shimmer
+          ${isMenuOpen ? "!rounded-3xl" : "rounded-full"}
           `}
         >
           <div className="flex items-center justify-between px-8 py-3">
             {/* Logo and Name */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 flex-shrink-0 mr-6">
               <div className="relative w-12 h-12 overflow-hidden rounded-full transition-transform duration-500 hover:scale-110 group">
                 <Image
                   src="/coder.png"
@@ -94,13 +112,13 @@ export default function Navbar() {
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/30 to-purple-500/0 opacity-0 group-hover:opacity-100 animate-shine"></div>
               </div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-gradient">
+              <h1 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-gradient truncate">
                 Ahnaf Shahriar
               </h1>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-10">
+            <div className="hidden md:flex items-center space-x-12">
               {["home", "about", "skills", "projects"].map((link) => (
                 <Link
                   key={link}
@@ -131,7 +149,7 @@ export default function Navbar() {
             <div className="md:hidden">
               <button
                 onClick={toggleMenu}
-                className={`p-2 rounded-full transition-all duration-300 hover:bg-white/20 dark:hover:bg-white/10 active:scale-95`}
+                className={`p-2 rounded-full transition-all duration-300 hover:bg-white/20 active:scale-95`}
                 aria-label="Toggle menu"
               >
                 {isMenuOpen ? (
@@ -149,9 +167,7 @@ export default function Navbar() {
               isMenuOpen ? "max-h-[300px] opacity-100 mb-4" : "max-h-0 opacity-0"
             }`}
           >
-            <div
-              className={`flex flex-col space-y-4 py-4 px-6 mx-4 mb-4 rounded-2xl backdrop-blur-xl ${"bg-white/30 dark:bg-black/40"}`}
-            >
+            <div className={`flex flex-col space-y-4 py-4 px-6 mx-4 mb-4 rounded-2xl backdrop-blur-xl bg-white/30`}>
               {["home", "about", "skills", "projects"].map((link) => (
                 <Link
                   key={link}
@@ -160,7 +176,7 @@ export default function Navbar() {
                   className={`px-4 py-2 rounded-lg transition-all duration-300 ${
                     activeLink === link
                       ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white scale-105 shadow-lg"
-                      : "hover:bg-white/20 dark:hover:bg-white/10 hover:scale-105"
+                      : "hover:bg-white/20 hover:scale-105"
                   }`}
                 >
                   <span className="capitalize">{link}</span>
