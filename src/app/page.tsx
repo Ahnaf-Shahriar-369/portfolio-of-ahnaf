@@ -2,7 +2,8 @@
 
 import { useEffect } from "react"
 import Navbar from "./components/NavBar"
-import DownBar from "./components/downBar" // Make sure this import is correct
+import Sidebar from "./components/SideBar"
+import DownBar from "./components/downBar"
 
 export default function Home() {
   // Fix for the right side background issue
@@ -23,7 +24,8 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-32 px-4">
+      <Sidebar />
+      <main className="min-h-screen pt-32 px-4 bg-black text-white">
         <section
           id="home"
           className="min-h-screen flex items-center justify-center transition-all duration-500 rounded-3xl"
@@ -52,8 +54,6 @@ export default function Home() {
           <h1 className="text-4xl font-bold">Projects Section</h1>
         </section>
       </main>
-
-      {/* Explicitly render the DownBar component */}
       <DownBar />
     </>
   )
