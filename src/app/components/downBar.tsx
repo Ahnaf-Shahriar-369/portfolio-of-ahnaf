@@ -1,65 +1,56 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
-import { Play, CirclePause, Moon, Sun } from "lucide-react"
-import Image from "next/image"
+import { useState, useRef, useEffect } from "react";
+import { Play, CirclePause, Moon, Sun } from "lucide-react";
+import Image from "next/image";
 
 function DownBar() {
   // State to track if music is playing
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false);
   // State to track dark/light mode
-  const [isDarkMode, setIsDarkMode] = useState(true)
+  const [isDarkMode, setIsDarkMode] = useState(true);
   // State to track language (true for English, false for Bangla)
-  const [isEnglish, setIsEnglish] = useState(true)
+  const [isEnglish, setIsEnglish] = useState(true);
   // State to track loading
-  const [isLoading, setIsLoading] = useState(true)
-  // State to track if component is mounted (for animations)
-  const [isMounted, setIsMounted] = useState(false)
+  const [isLoading, setIsLoading] = useState(true);
 
   // Reference to the audio element
-  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Simulate loading and mount animation
+  // Simulate loading animation
   useEffect(() => {
-    // Simulate loading delay
     const loadingTimer = setTimeout(() => {
-      setIsLoading(false)
-    }, 2000)
-
-    // Set mounted after a short delay to trigger animation
-    const mountTimer = setTimeout(() => {
-      setIsMounted(true)
-    }, 100)
+      setIsLoading(false);
+    }, 2000);
 
     return () => {
-      clearTimeout(loadingTimer)
-      clearTimeout(mountTimer)
-    }
-  }, [])
+      clearTimeout(loadingTimer);
+    };
+  }, []);
 
   // Toggle play/pause state
   const togglePlayPause = () => {
-    if (!audioRef.current) return
+    if (!audioRef.current) return;
 
     if (isPlaying) {
-      audioRef.current.pause() // Pause the music
+      audioRef.current.pause(); // Pause the music
     } else {
-      audioRef.current.play() // Play the music
+      audioRef.current.play(); // Play the music
     }
 
-    setIsPlaying(!isPlaying) // Update the state
-  }
+    setIsPlaying(!isPlaying); // Update the state
+  };
 
   // Toggle dark/light mode (just visual, doesn't affect the page)
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
-  }
+    setIsDarkMode(!isDarkMode);
+  };
 
   // Toggle language
   const toggleLanguage = () => {
-    setIsEnglish(!isEnglish)
+    setIsEnglish(!isEnglish);
     // Here you would implement the actual language change functionality
-  }
+  };
 
   return (
     <>
@@ -67,7 +58,7 @@ function DownBar() {
       <audio loop ref={audioRef} src="/in-slow-motion-inspiring-ambient-lounge-219592.mp3"></audio>
 
       {/* Simple fixed DownBar with minimal styling to ensure it's visible */}
-      <div className="fixed bottom-8 left-0 right-0 flex justify-center items-center z-50">
+      <div className="fixed bottom-8 left-0 right-0 flex justify-center items-center z-50 animate-float">
         <div
           className={`backdrop-blur-xl bg-white/30 text-white py-4 px-8 rounded-full shadow-lg flex justify-center items-center space-x-6 transition-all duration-500 
           border border-white/40 hover:bg-white/40 hover:scale-105
@@ -123,7 +114,7 @@ function DownBar() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default DownBar
+export default DownBar;

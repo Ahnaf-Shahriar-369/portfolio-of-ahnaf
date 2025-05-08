@@ -78,7 +78,7 @@ export default function Navbar() {
   return (
     <nav
       ref={navbarRef}
-      className={`fixed top-[39px] left-0 right-0 z-40 transition-all duration-700 ${scrolled ? "py-3" : "py-5"} ${
+      className={` animate-float fixed top-[39px] left-0 right-0 z-40 transition-all duration-700 ${scrolled ? "py-3" : "py-5"} ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
       }`}
     >

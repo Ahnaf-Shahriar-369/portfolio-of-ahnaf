@@ -21,7 +21,7 @@ const SidebarIcon: React.FC<SidebarIconProps> = ({ icon, href, delay, badge, col
   return (
     <Link
       href={href}
-      className={`relative flex items-center justify-center w-12 h-12 mb-4 rounded-full 
+      className={`relative flex items-center justify-center  w-10 h-12 mb-4 rounded-full 
         ${color} 
         transition-all duration-300 ease-in-out
         hover:scale-110 hover:brightness-125
@@ -88,13 +88,13 @@ export default function Sidebar() {
           boxShadow: "0 0 20px rgba(0, 0, 255, 0.2)",
         }}
       >
-        <SidebarIcon icon={<Github size={28} />} href="https://github.com" delay={0} />
+        <SidebarIcon icon={<Github size={28} />} href="https://github.com/Ahnaf-Shahriar-369" delay={0} />
         <SidebarIcon icon={<Linkedin size={28} />} href="https://linkedin.com" delay={0.5} color="text-[#0077b5]" />
         <SidebarIcon
           icon={<Mail size={28} />}
           href="mailto:ahnafshahriar.dev@protonmail.com"
           delay={1}
-          badge={0}
+          
           color="text-orange-500"
         />
         <SidebarIcon icon={<FileText size={28} />} href="/resume" delay={1.5} color="text-blue-300" />
