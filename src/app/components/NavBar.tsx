@@ -164,18 +164,18 @@ export default function Navbar() {
           {/* Mobile Navigation */}
           <div
             className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
-              isMenuOpen ? "max-h-[300px] opacity-100 mb-4" : "max-h-0 opacity-0"
+              isMenuOpen ? "max-h-[200px] opacity-100 mb-2" : "max-h-0 opacity-0"
             }`}
           >
-            <div className={`flex flex-col space-y-4 py-4 px-6 mx-4 mb-4 rounded-2xl backdrop-blur-xl bg-white/30`}>
+            <div className={`flex flex-col space-y-3 py-3 px-4 mx-2 mb-2 rounded-xl backdrop-blur-md bg-white/20`}>
               {["home", "about", "skills", "projects"].map((link) => (
                 <Link
                   key={link}
                   href={`#${link}`}
                   onClick={() => handleLinkClick(link)}
-                  className={`px-4 py-2 rounded-lg transition-all duration-300 ${
+                  className={`px-3 py-2 rounded-md transition-all duration-300 ${
                     activeLink === link
-                      ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white scale-105 shadow-lg"
+                      ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white scale-105 shadow-md"
                       : "hover:bg-white/20 hover:scale-105"
                   }`}
                 >

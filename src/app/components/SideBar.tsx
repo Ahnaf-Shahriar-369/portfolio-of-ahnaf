@@ -21,7 +21,7 @@ const SidebarIcon: React.FC<SidebarIconProps> = ({ icon, href, delay, badge, col
   return (
     <Link
       href={href}
-      className={`relative flex items-center justify-center  w-10 h-12 mb-4 rounded-full 
+      className={`relative flex items-center justify-center w-10 h-12 mb-4 rounded-full 
         ${color} 
         transition-all duration-300 ease-in-out
         hover:scale-110 hover:brightness-125
@@ -81,9 +81,11 @@ export default function Sidebar() {
   if (!mounted || isLoading) return null
 
   return (
-    <div className="fixed left-4 top-1/2 -translate-y-1/2 z-30">
+    <div
+      className="fixed left-4 top-1/2 -translate-y-1/2 z-30 md:left-2 md:top-1/2 md:-translate-y-1/2"
+    >
       <div
-        className="flex flex-col items-center justify-center w-[69px] h-[269px] bg-[#0a0a2e] rounded-full p-6 shadow-lg transition-all duration-700 animate-fadeIn"
+        className="flex flex-col items-center justify-center w-[69px] h-[269px] bg-[#0a0a2e] rounded-3xl p-6 shadow-lg transition-all duration-700 animate-fadeIn md:w-[50px] md:h-auto md:p-2 md:rounded-3xl"
         style={{
           boxShadow: "0 0 20px rgba(0, 0, 255, 0.2)",
         }}
@@ -94,7 +96,6 @@ export default function Sidebar() {
           icon={<Mail size={28} />}
           href="mailto:ahnafshahriar.dev@protonmail.com"
           delay={1}
-          
           color="text-orange-500"
         />
         <SidebarIcon icon={<FileText size={28} />} href="/resume" delay={1.5} color="text-blue-300" />

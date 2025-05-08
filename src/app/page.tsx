@@ -1,31 +1,32 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import Navbar from "./components/NavBar"
-import Sidebar from "./components/SideBar"
-import DownBar from "./components/downBar"
+import { useEffect } from "react";
+import Navbar from "./components/NavBar";
+import Sidebar from "./components/SideBar";
+import DownBar from "./components/downBar";
 
 export default function Home() {
   // Fix for the right side background issue
   useEffect(() => {
     // Ensure no overflow on the body
-    document.body.style.overflow = "hidden"
-    document.body.style.overflowY = "auto"
-    document.body.style.width = "100%"
-    document.body.style.maxWidth = "100vw"
+    document.body.style.overflow = "hidden";
+    document.body.style.overflowY = "auto";
+    document.body.style.width = "100%";
+    document.body.style.maxWidth = "100vw";
 
     return () => {
-      document.body.style.overflow = ""
-      document.body.style.width = ""
-      document.body.style.maxWidth = ""
-    }
-  }, [])
+      document.body.style.overflow = "";
+      document.body.style.width = "";
+      document.body.style.maxWidth = "";
+    };
+  }, []);
 
   return (
     <>
       <Navbar />
       <Sidebar />
       <main className="min-h-screen pt-32 px-4 bg-black text-white">
+        
         <section
           id="home"
           className="min-h-screen flex items-center justify-center transition-all duration-500 rounded-3xl"
@@ -53,8 +54,8 @@ export default function Home() {
         >
           <h1 className="text-4xl font-bold">Projects Section</h1>
         </section>
-      </main>
+      </main> 
       <DownBar />
     </>
-  )
+  );
 }

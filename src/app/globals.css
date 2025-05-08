@@ -299,3 +299,41 @@ body {
   left: 50%;
   transform: translateX(-50%);
 }
+
+
+
+@keyframes shine {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+}
+
+.shine-animation {
+  animation: shine 2s infinite;
+}
+
+
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.bg-stars {
+  background: url('/path-to-stars-image.png') repeat;
+  background-size: cover;
+}
+
+.animate-twinkle {
+  animation: twinkle 2s infinite;
+}
