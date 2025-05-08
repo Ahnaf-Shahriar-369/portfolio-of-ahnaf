@@ -13,7 +13,6 @@ export default function Navbar() {
   const [isLoading, setIsLoading] = useState(true)
   const navbarRef = useRef<HTMLDivElement>(null)
 
-  // Handle scroll effect and loading
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -25,15 +24,13 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll)
 
-    // Loading animation for 2 seconds (matching DownBar)
     const loadingTimer = setTimeout(() => {
       setIsLoading(false)
     }, 2000)
 
-    // Set visible after loading completes
     const visibilityTimer = setTimeout(() => {
       setIsVisible(true)
-    }, 2100) // 100ms after loading completes
+    }, 2100)
 
     return () => {
       window.removeEventListener("scroll", handleScroll)
@@ -50,13 +47,9 @@ export default function Navbar() {
     setActiveLink(link)
     setIsMenuOpen(false)
 
-    // Smooth scroll to section
     const element = document.getElementById(link)
     if (element) {
-      // Add a class to the element for animation
       element.classList.add("section-active")
-
-      // Remove the class after animation completes
       setTimeout(() => {
         element.classList.remove("section-active")
       }, 1000)
@@ -78,53 +71,50 @@ export default function Navbar() {
   return (
     <nav
       ref={navbarRef}
-      className={` animate-float fixed top-[39px] left-0 right-0 z-40 transition-all duration-700 ${scrolled ? "py-3" : "py-5"} ${
+      className={`animate-float fixed top-[9px] left-0 right-0 z-40 transition-all duration-700 ${scrolled ? "py-2" : "py-4"} ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
       }`}
     >
       <div className="container mx-auto px-4">
         <div
-          className={`relative w-[800px] max-w-full mx-auto backdrop-blur-2xl 
+          className={`relative w-[600px] max-w-full mx-auto backdrop-blur-2xl 
           bg-white/20
           text-white
-          rounded-full shadow-2xl 
+          rounded-full shadow-lg 
           transition-all duration-500 ease-in-out
           border border-white/30
-          hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]
+          hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]
           before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-b before:from-white/30 before:to-transparent before:pointer-events-none before:z-[-1]
-          after:absolute after:inset-0 after:rounded-full after:shadow-[inset_0_0_20px_rgba(255,255,255,0.2)] after:pointer-events-none after:z-[-1]
+          after:absolute after:inset-0 after:rounded-full after:shadow-[inset_0_0_10px_rgba(255,255,255,0.2)] after:pointer-events-none after:z-[-1]
           ${scrolled ? "scale-95" : "scale-100"}
-          animate-shimmer
           ${isMenuOpen ? "!rounded-3xl" : "rounded-full"}
           `}
         >
-          <div className="flex items-center justify-between px-8 py-3">
-            {/* Logo and Name */}
+          <div className="flex items-center justify-between px-6 py-2">
             <div className="flex items-center space-x-3 flex-shrink-0 mr-6">
-              <div className="relative w-12 h-12 overflow-hidden rounded-full transition-transform duration-500 hover:scale-110 group">
+              <div className="relative w-10 h-10 overflow-hidden rounded-full transition-transform duration-500 hover:scale-110 group">
                 <Image
                   src="/coder.png"
                   alt="Coder Logo"
-                  width={48}
-                  height={48}
+                  width={40}
+                  height={40}
                   className="object-cover transition-all duration-700 group-hover:rotate-[360deg] group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/30 to-purple-500/0 opacity-0 group-hover:opacity-100 animate-shine"></div>
               </div>
-              <h1 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-gradient truncate">
+              <h1 className="text-lg md:text-xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-gradient truncate">
                 Ahnaf Shahriar
               </h1>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-12">
+            <div className="hidden md:flex items-center space-x-8">
               {["home", "about", "skills", "projects"].map((link) => (
                 <Link
                   key={link}
                   href={`#${link}`}
                   onClick={() => handleLinkClick(link)}
-                  className={`relative text-lg font-medium transition-all duration-500 hover:text-purple-500 group overflow-hidden`}
+                  className={`relative text-base font-medium transition-all duration-500 hover:text-purple-500 group overflow-hidden`}
                 >
                   <span
                     className={`capitalize transition-transform duration-500 inline-block ${
@@ -145,7 +135,6 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button
                 onClick={toggleMenu}
@@ -161,13 +150,12 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Mobile Navigation */}
           <div
             className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
               isMenuOpen ? "max-h-[200px] opacity-100 mb-2" : "max-h-0 opacity-0"
             }`}
           >
-            <div className={`flex flex-col space-y-3 py-3 px-4 mx-2 mb-2 rounded-xl backdrop-blur-md bg-white/20`}>
+            <div className={`flex flex-col space-y-2 py-2 px-4 mx-2 mb-2 rounded-xl backdrop-blur-md bg-white/20`}>
               {["home", "about", "skills", "projects"].map((link) => (
                 <Link
                   key={link}
