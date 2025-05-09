@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Navbar from "./components/NavBar";
 import Sidebar from "./components/SideBar";
 import DownBar from "./components/downBar";
+import Cursor from "./components/cursor";
 
 export default function Home() {
   // Fix for the right side background issue
@@ -23,8 +24,10 @@ export default function Home() {
 
   return (
     <>
+      <Cursor />
       <Navbar />
       <Sidebar />
+
       <main className="min-h-screen pt-32 px-4 bg-black text-white">
         
         <section
