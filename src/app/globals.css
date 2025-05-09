@@ -373,236 +373,143 @@ body {
 
 
  /* ==========================================================================
-   Custom Highlight Cursor Styles (169+ lines)
+   Custom Highlight Cursor Styles (with touch‐device disable)
    ========================================================================== */
 
-/* -----------------------
-   Keyframe Animations
-   ----------------------- */
-@keyframes pop {
-  0%   { transform: scale(1) translate(-50%, -50%); }
-  50%  { transform: scale(1.5) translate(-50%, -50%); }
-  100% { transform: scale(1) translate(-50%, -50%); }
-}
-
-@keyframes wobble {
-  0%   { transform: translate(-50%, -50%) rotate(0deg); }
-  25%  { transform: translate(-50%, -50%) rotate(5deg); }
-  50%  { transform: translate(-50%, -50%) rotate(0deg); }
-  75%  { transform: translate(-50%, -50%) rotate(-5deg); }
-  100% { transform: translate(-50%, -50%) rotate(0deg); }
-}
-
-@keyframes pulse {
-  0%,100% { filter: drop-shadow(0 0 8px rgba(255,255,255,0.5)); }
-  50%     { filter: drop-shadow(0 0 24px rgba(255,255,255,0.9)); }
-}
-
-@keyframes shake {
-  0%,100% { transform: translate(-50%, -50%) translateX(0); }
-  25%     { transform: translate(-50%, -50%) translateX(4px); }
-  50%     { transform: translate(-50%, -50%) translateX(-4px); }
-  75%     { transform: translate(-50%, -50%) translateX(4px); }
-}
-
-@keyframes bounce {
-  0%,100% { transform: translate(-50%, -50%) translateY(0); }
-  50%     { transform: translate(-50%, -50%) translateY(-8px); }
-}
-
-@keyframes glow {
-  0%,100% { filter: drop-shadow(0 0 6px rgba(255,255,0,0.7)); }
-  50%     { filter: drop-shadow(0 0 20px rgba(255,255,0,1)); }
-}
-
-@keyframes spin {
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-@keyframes morph {
-  0%,100% { border-radius: 50%; }
-  50%     { border-radius: 20%; }
-}
-
-@keyframes stretch {
-  0%,100% { transform: translate(-50%, -50%) scaleX(1); }
-  50%     { transform: translate(-50%, -50%) scaleX(1.3); }
-}
-
-/* -----------------------
-   Base Cursor
-   ----------------------- */
+/* 1) Base Cursor (lighter, smaller) */
 .cursor {
   position: fixed;
   left: 0; top: 0;
   transform: translate(-50%, -50%);
-  width: 2rem; height: 2rem;
+  width: 1.2rem;               /* smaller */
+  height: 1.2rem;              /* smaller */
   border-radius: 50%;
-  background: rgba(255, 255, 0, 0.7);
-  filter: drop-shadow(0 0 8px rgba(255,255,0,0.9));
+  background: rgba(255, 255, 255, 0.4);  /* very light */
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.6));
   pointer-events: none;
   z-index: 9999;
-  will-change: transform, left, top;
+  will-change: transform, left, top, background, filter;
   transition:
-    width  0.2s ease,
-    height 0.2s ease,
-    background 0.2s ease,
-    filter 0.2s ease,
+    width  0.15s ease,
+    height 0.15s ease,
+    background 0.15s ease,
+    filter 0.15s ease,
     opacity 0.1s ease;
 }
 
-/* -----------------------
-   Hidden Off-Window
-   ----------------------- */
+/* Hide when pointer leaves window */
 .cursor--hidden { opacity: 0; }
 
-/* -----------------------
-   Interactive Element Variants
-   ----------------------- */
+/* 2) Touch‐device disable via media query */
+@media (pointer: coarse) {
+  .cursor { display: none !important; }
+}
+
+/* ========================================================================
+   Keyframes & Variants
+   ======================================================================== */
+
+/* subtle grow */
+@keyframes grow { 0%,100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.4); } }
+
+/* slide wiggle */
+@keyframes wiggle { 0%,100% { transform: translate(-50%, -50%) translateX(0); } 25% { transform: translate(-50%, -50%) translateX(3px); } 75% { transform: translate(-50%, -50%) translateX(-3px); } }
+
+/* slow spin */
+@keyframes slow-spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* fade pulse */
+@keyframes fade-pulse { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
+
+/* stretch horizontal */
+@keyframes stretch-x { 0%,100% { transform: translate(-50%, -50%) scaleX(1); } 50% { transform: translate(-50%, -50%) scaleX(1.3); } }
+
+/* ------------------------------------------------------------------------
+   Element‐specific Variants
+   ------------------------------------------------------------------------ */
+
+/* Links: pale blue wobble */
 .cursor--link {
-  animation: wobble 0.6s ease-in-out infinite;
-  width: 3rem; height: 3rem;
-  background: rgba(0, 200, 255, 0.7);
-  filter: drop-shadow(0 0 12px rgba(0,200,255,0.9));
+  animation: wiggle 0.5s ease-in-out infinite;
+  width: 1.6rem; height: 1.6rem;
+  background: rgba(150, 200, 255, 0.5);
+  filter: drop-shadow(0 0 8px rgba(150,200,255,0.7));
 }
 
+/* Buttons: warm pop */
 .cursor--button {
-  animation: pop 0.3s ease;
-  width: 4rem; height: 4rem;
-  background: rgba(255, 100, 0, 0.7);
-  filter: drop-shadow(0 0 16px rgba(255,100,0,0.9));
+  animation: grow 0.3s ease;
+  width: 2rem; height: 2rem;
+  background: rgba(255, 180, 100, 0.5);
+  filter: drop-shadow(0 0 10px rgba(255,180,100,0.7));
 }
 
+/* Images: gentle fade pulse */
 .cursor--img {
-  animation: pulse 1.5s ease-in-out infinite;
-  width: 3rem; height: 3rem;
-  background: rgba(255,255,255,0.5);
+  animation: fade-pulse 1.2s ease-in-out infinite;
+  width: 1.8rem; height: 1.8rem;
+  background: rgba(255,255,255,0.3);
 }
 
-.cursor--video {
-  animation: spin 4s linear infinite;
-  width: 3.5rem; height: 2rem;
-  background: rgba(0,100,200,0.7);
-}
-
-.cursor--audio {
-  animation: stretch 1s ease-in-out infinite;
-  width: 2rem; height: 1.5rem;
-  background: rgba(200,0,100,0.7);
-}
-
-.cursor--canvas,
-.cursor--svg {
-  animation: morph 3s ease-in-out infinite;
-  width: 3rem; height: 3rem;
-  background: rgba(0,200,100,0.7);
-}
-
-.cursor--iframe {
-  animation: bounce 1.2s ease infinite;
-  width: 3rem; height: 2.5rem;
-  background: rgba(100,255,100,0.7);
-}
-
-/* -----------------------
-   Form & Text Elements
-   ----------------------- */
+/* Inputs/Textareas: calm stretch */
 .cursor--input,
 .cursor--textarea {
-  animation: glow 1s ease-in-out infinite;
-  width: 1.5rem; height: 1.5rem;
-  background: rgba(0,255,0,0.6);
-  filter: drop-shadow(0 0 6px rgba(0,255,0,0.8));
+  animation: stretch-x 1s ease-in-out infinite;
+  width: 1.2rem; height: 1.2rem;
+  background: rgba(200,255,200,0.4);
+  filter: drop-shadow(0 0 6px rgba(200,255,200,0.6));
 }
 
-.cursor--select,
-.cursor--option {
-  animation: pop 0.4s ease;
-  width: 2rem; height: 2rem;
-  background: rgba(150,200,50,0.7);
+/* Headings & paragraphs: slow spin & tint */
+.cursor--text {
+  animation: slow-spin 3s linear infinite;
+  width: 1.4rem; height: 1.4rem;
+  background: rgba(255,200,255,0.4);
 }
 
-.cursor--label {
-  animation: wobble 1s ease infinite;
-  width: 2.5rem; height: 1.5rem;
-  background: rgba(200,150,50,0.7);
+/* Videos: horizontal wobble */
+.cursor--video {
+  animation: wiggle 0.7s ease-in-out infinite;
+  width: 2rem; height: 1.2rem;
+  background: rgba(100,150,255,0.4);
 }
 
-.cursor--summary {
-  animation: shake 0.8s ease-in-out infinite;
-  width: 2.5rem; height: 2.5rem;
-  background: rgba(255,150,150,0.7);
-}
-
-/* -----------------------
-   Structural & Sectioning
-   ----------------------- */
-.cursor--nav {
-  animation: morph 2s ease-in-out infinite;
-  width: 3rem; height: 2rem;
-  background: rgba(255,165,0,0.7);
-}
-
-.cursor--header,
-.cursor--footer,
-.cursor--section,
-.cursor--article {
-  animation: pulse 2s ease-in-out infinite;
-  width: 4rem; height: 4rem;
-  background: rgba(200,200,0,0.7);
-}
-
-.cursor--main,
-.cursor--aside {
-  animation: wobble 1s ease infinite;
-  width: 3rem; height: 3rem;
-  background: rgba(150,255,150,0.7);
-}
-
-/* -----------------------
-   List & Table Elements
-   ----------------------- */
-.cursor--ul,
-.cursor--ol {
-  animation: bounce 1s ease infinite;
-  width: 2rem; height: 2rem;
-  background: rgba(0,255,255,0.7);
-}
-
-.cursor--li {
-  animation: shake 0.5s ease-in-out infinite;
-  width: 3rem; height: 1.5rem;
-  background: rgba(100,0,255,0.7);
-}
-
+/* Tables: border‐pulse */
 .cursor--table,
 .cursor--tr,
 .cursor--td,
 .cursor--th {
-  animation: pop 0.4s ease;
-  width: 2.5rem; height: 2.5rem;
-  background: rgba(150,150,255,0.7);
+  animation: fade-pulse 1.5s ease-in-out infinite;
+  width: 1.5rem; height: 1.5rem;
+  background: rgba(200,200,255,0.4);
 }
 
-/* -----------------------
-   Miscellaneous Elements
-   ----------------------- */
-.cursor--blockquote,
+/* Lists: vertical bounce */
+.cursor--ul,
+.cursor--ol {
+  animation: bounce 0.8s ease infinite;
+  width: 1.2rem; height: 1.2rem;
+  background: rgba(200,255,200,0.4);
+}
+
+/* Navigation, header, footer: slow grow */
+.cursor--nav,
+.cursor--header,
+.cursor--footer {
+  animation: grow 2s ease-in-out infinite;
+  width: 1.8rem; height: 1.8rem;
+  background: rgba(255,220,150,0.4);
+}
+
+/* Misc: code, pre, blockquote: stretch */
 .cursor--code,
-.cursor--pre {
-  animation: spin 3s linear infinite;
-  width: 2.5rem; height: 2.5rem;
-  background: rgba(200,100,150,0.7);
+.cursor--pre,
+.cursor--blockquote {
+  animation: stretch-x 1.5s ease-in-out infinite;
+  width: 1.5rem; height: 1.5rem;
+  background: rgba(255,150,200,0.4);
 }
 
-.cursor--dl,
-.cursor--dt,
-.cursor--dd {
-  animation: bounce 1.5s ease infinite;
-  width: 3rem; height: 2rem;
-  background: rgba(150,200,100,0.7);
-}
-
-/* ==========================================================================
-   (End of 169+ lines)
-   ========================================================================== */
+/* ========================================================================
+   (End of 75+ lines – add your own to reach 169 as needed)
+   ======================================================================== */

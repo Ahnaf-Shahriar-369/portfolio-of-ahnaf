@@ -1,45 +1,36 @@
 import { useEffect, useRef, useState, CSSProperties } from 'react';
 
-type Point = { x: number; y: number; };
+type Point = { x: number; y: number };
 const easeFactor = 0.15;
 
-// Map HTML tags to cursor variant classes
+// Map tags to CSS classes
 const tagToVariant: Record<string, string> = {
   a: 'cursor--link',
   button: 'cursor--button',
   img: 'cursor--img',
   video: 'cursor--video',
-  audio: 'cursor--audio',
-  canvas: 'cursor--canvas',
-  svg: 'cursor--svg',
-  iframe: 'cursor--iframe',
   input: 'cursor--input',
   textarea: 'cursor--textarea',
-  select: 'cursor--select',
-  option: 'cursor--option',
-  label: 'cursor--label',
-  summary: 'cursor--summary',
-  nav: 'cursor--nav',
-  header: 'cursor--header',
-  footer: 'cursor--footer',
-  section: 'cursor--section',
-  article: 'cursor--article',
-  main: 'cursor--main',
-  aside: 'cursor--aside',
-  ul: 'cursor--ul',
-  ol: 'cursor--ol',
-  li: 'cursor--li',
   table: 'cursor--table',
   tr: 'cursor--tr',
   td: 'cursor--td',
   th: 'cursor--th',
-  blockquote: 'cursor--blockquote',
-  pre: 'cursor--pre',
+  ul: 'cursor--ul',
+  ol: 'cursor--ol',
+  nav: 'cursor--nav',
+  header: 'cursor--header',
+  footer: 'cursor--footer',
   code: 'cursor--code',
-  dl: 'cursor--dl',
-  dt: 'cursor--dt',
-  dd: 'cursor--dd',
+  pre: 'cursor--pre',
+  blockquote: 'cursor--blockquote',
+  // ...add more as needed
 };
+
+const isTouchDevice = () =>
+  typeof window !== 'undefined' && (
+    'ontouchstart' in window ||
+    navigator.maxTouchPoints > 0
+  );
 
 const Cursor: React.FC = () => {
   const target = useRef<Point>({ x: 0, y: 0 });
@@ -47,15 +38,21 @@ const Cursor: React.FC = () => {
   const [, setTick] = useState<number>(0);
   const [variant, setVariant] = useState<string>('');
   const [hidden, setHidden]   = useState<boolean>(false);
+  const [enabled, setEnabled] = useState<boolean>(true);
 
-  // Track mouse move & element under pointer
+  // Disable on touch devices
   useEffect(() => {
+    if (isTouchDevice()) setEnabled(false);
+  }, []);
+
+  // Track mouse & element
+  useEffect(() => {
+    if (!enabled) return;
     const onMouseMove = (e: MouseEvent) => {
       target.current = { x: e.clientX, y: e.clientY };
       const tag = (e.target as HTMLElement).tagName.toLowerCase();
       setVariant(tagToVariant[tag] || '');
     };
-
     const onMouseLeave = () => setHidden(true);
     const onMouseEnter = () => setHidden(false);
 
@@ -72,10 +69,11 @@ const Cursor: React.FC = () => {
       window.removeEventListener('blur', onMouseLeave);
       window.removeEventListener('focus', onMouseEnter);
     };
-  }, []);
+  }, [enabled]);
 
-  // Smooth trailing animation
+  // Smooth trailing
   useEffect(() => {
+    if (!enabled) return;
     let frameId: number;
     const animate = () => {
       pos.current.x += (target.current.x - pos.current.x) * easeFactor;
@@ -85,9 +83,10 @@ const Cursor: React.FC = () => {
     };
     animate();
     return () => cancelAnimationFrame(frameId);
-  }, []);
+  }, [enabled]);
 
-  // Assemble style and classes
+  if (!enabled) return null;
+
   const style: CSSProperties = {
     left: `${pos.current.x}px`,
     top:  `${pos.current.y}px`,
@@ -100,4 +99,5 @@ const Cursor: React.FC = () => {
 };
 
 export default Cursor;
+
 
