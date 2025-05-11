@@ -5,6 +5,9 @@ import Navbar from "./components/NavBar";
 import Sidebar from "./components/SideBar";
 import DownBar from "./components/downBar";
 import Cursor from "./components/cursor";
+import "./globals.css";
+import Hero from "./components/Hero";
+// import LogoSphere from "./components/Tech-Sphere";
 
 export default function Home() {
   // Fix for the right side background issue
@@ -28,14 +31,14 @@ export default function Home() {
       <Navbar />
       <Sidebar />
 
-      <main className="min-h-screen pt-32 px-4 bg-black text-white">
+      <main className="min-h-screen  bg-black text-white">
         
         <section
-          id="home"
-          className="min-h-screen flex items-center justify-center transition-all duration-500 rounded-3xl"
-        >
-          <h1 className="text-4xl font-bold">Home Section</h1>
-        </section>
+  id="home"
+  className="min-h-screen flex items-center justify-center transition-all duration-500 rounded-3xl p-0 m-0 "
+>
+  <Hero />
+</section>
 
         <section
           id="about"

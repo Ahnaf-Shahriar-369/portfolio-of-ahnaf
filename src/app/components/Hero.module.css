@@ -1,0 +1,456 @@
+/* Hero Container */
+.heroContainer {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #050814;
+  background-image: linear-gradient(135deg, #050814 0%, #0a0e1f 50%, #050814 100%);
+  color: white;
+  font-family: monospace;
+}
+
+/* Background Shine Effect */
+.backgroundShine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(157, 78, 221, 0.03),
+    rgba(157, 78, 221, 0.05),
+    rgba(157, 78, 221, 0.03),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: backgroundShine 8s infinite linear;
+  will-change: transform;
+  z-index: 1;
+}
+
+@keyframes backgroundShine {
+  0% {
+    transform: translateX(-50%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(0%) skewX(-20deg);
+  }
+}
+
+/* Main Content Layout */
+.heroMain {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .heroMain {
+    flex-direction: row;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* Content Container */
+.contentContainer {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Name Gradient Text Animation with Shine Effect */
+.nameGradient {
+  font-size: 3.75rem;
+  line-height: 1.2;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ff00ff, #c77dff, #9d4edd, #7b2cbf, #5a189a);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  /* Kept the gradient animation */
+  animation: gradientShift 10s ease infinite;
+  will-change: background-position;
+}
+
+@media (min-width: 768px) {
+  .nameGradient {
+    font-size: 4.5rem;
+  }
+}
+
+/* Kept the shine effect animation */
+.nameGradient::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(157, 78, 221, 0.2), transparent);
+  animation: shine 5s infinite;
+  transform: skewX(-20deg);
+  will-change: left;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Subtitle Text */
+.subtitleText {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+/* Rotating Text Animation */
+.perspective {
+  perspective: 1000px;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.rotatingTextContainer {
+  position: relative;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 300px;
+  background-color: rgba(10, 26, 51, 0.7);
+  padding: 0 16px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(138, 43, 226, 0.2);
+  overflow: hidden;
+}
+
+.rotatingText {
+  position: relative;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  will-change: transform, opacity;
+}
+
+.rotatingText.active {
+  animation: textAppear 0.5s forwards;
+}
+
+.rotatingText.shatterOut {
+  animation: shatter 0.5s forwards;
+}
+
+@keyframes textAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shatter {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-5px);
+    letter-spacing: 3px;
+  }
+}
+
+/* Button Container */
+.buttonContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Button Effects */
+.buttonEffect {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  will-change: transform;
+}
+
+.buttonEffect:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(157, 78, 221, 0.2), transparent);
+  animation: none;
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+.buttonEffect:hover:before {
+  left: 100%;
+  animation: buttonShine 0.5s forwards;
+}
+
+@keyframes buttonShine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.buttonEffect:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+}
+
+.buttonClicked {
+  transform: scale(0.95) translateY(2px) !important;
+  box-shadow: 0 2px 5px rgba(138, 43, 226, 0.2) !important;
+}
+
+.githubButton {
+  border: 1px solid #9d4edd;
+}
+
+.githubButton:hover {
+  background-color: rgba(138, 43, 226, 0.1);
+  border-color: #9370db;
+}
+
+.resumeButton {
+  border: 1px solid #6c757d;
+}
+
+.resumeButton:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Icon Animations */
+.arrowIcon {
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.arrowMoved {
+  transform: translateX(4px);
+}
+
+.downloadIcon {
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.downloadMoved {
+  transform: translateY(4px);
+}
+
+/* Tech Sphere Container - Optimized */
+.techSphereContainer {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(10, 10, 30, 0.2);
+  border-radius: 50%;
+  overflow: hidden;
+  /* Add hardware acceleration */
+  transform: translateZ(0);
+}
+
+/* Optimized Tech Sphere Shine Effects - Reduced and simplified */
+.techSphereShineBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  /* Simplified gradient with fewer color stops */
+  background: linear-gradient(0deg, rgba(157, 78, 221, 0.08) 0%, transparent 100%);
+  /* Slower animation with linear timing */
+  animation: techSphereShineBottom 12s infinite alternate linear;
+  z-index: 2;
+  /* Hardware acceleration */
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+@keyframes techSphereShineBottom {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.techSphereShineHorizontal {
+  position: absolute;
+  top: 45%;
+  left: -100%;
+  width: 100%;
+  height: 10%;
+  /* Simplified gradient */
+  background: linear-gradient(90deg, transparent, rgba(157, 78, 221, 0.1), transparent);
+  /* Slower animation */
+  animation: techSphereShineHorizontal 15s infinite linear;
+  z-index: 3;
+  /* Hardware acceleration */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+@keyframes techSphereShineHorizontal {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@media (min-width: 768px) {
+  .techSphereContainer {
+    margin-bottom: 0;
+    height: 500px;
+  }
+
+  /* On desktop, position the tech sphere container to align with text */
+  .heroMain {
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .contentContainer {
+    flex: 1;
+  }
+
+  .techSphereContainer {
+    flex: 1;
+  }
+}
+
+/* Simplified diagonal shine lines */
+.heroContainer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 150px,
+    rgba(157, 78, 221, 0.01) 150px,
+    rgba(157, 78, 221, 0.01) 152px
+  );
+  animation: moveLines 30s linear infinite;
+  z-index: 0;
+}
+
+@keyframes moveLines {
+  0% {
+    transform: translate(-50px, -50px);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.heroContainer {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden; /* Prevent overflow */
+  padding: 0; /* Remove any padding */
+  margin: 0; /* Remove any margin */
+}
+
+.heroMain {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* Optional: Limit max width */
+  margin: 0 auto; /* Center the content */
+}
+
+.contentContainer {
+  flex: 1;
+  padding: 0 20px; /* Add some padding for spacing */
+}
+
+.techSphereContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Prevent overflow */
+}

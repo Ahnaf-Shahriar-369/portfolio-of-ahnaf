@@ -4,7 +4,12 @@
 } */
 
 
-
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
 
 
 
@@ -384,8 +389,8 @@ body {
   width: 1.2rem;               /* smaller */
   height: 1.2rem;              /* smaller */
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);  /* very light */
-  filter: drop-shadow(0 0 6px rgba(255,255,255,0.6));
+  background: rgba(136, 16, 206, 0.4);  /* very light */
+  filter: drop-shadow(0 0 6px rgba(224, 10, 171, 0.6));
   pointer-events: none;
   z-index: 9999;
   will-change: transform, left, top, background, filter;
@@ -406,7 +411,7 @@ body {
 }
 
 /* ========================================================================
-   Keyframes & Variants
+    Keyframes & Variants
    ======================================================================== */
 
 /* subtle grow */
@@ -432,23 +437,23 @@ body {
 .cursor--link {
   animation: wiggle 0.5s ease-in-out infinite;
   width: 1.6rem; height: 1.6rem;
-  background: rgba(150, 200, 255, 0.5);
-  filter: drop-shadow(0 0 8px rgba(150,200,255,0.7));
+  background: rgba(212, 10, 10, 0.5);
+  filter: drop-shadow(0 0 8px rgba(112, 201, 10, 0.7));
 }
 
 /* Buttons: warm pop */
 .cursor--button {
   animation: grow 0.3s ease;
   width: 2rem; height: 2rem;
-  background: rgba(255, 180, 100, 0.5);
-  filter: drop-shadow(0 0 10px rgba(255,180,100,0.7));
+  background: rgba(8, 216, 95, 0.5);
+  filter: drop-shadow(0 0 10px rgba(11, 180, 124, 0.7).7);
 }
 
 /* Images: gentle fade pulse */
 .cursor--img {
   animation: fade-pulse 1.2s ease-in-out infinite;
   width: 1.8rem; height: 1.8rem;
-  background: rgba(255,255,255,0.3);
+  background: rgb(0, 240, 240)
 }
 
 /* Inputs/Textareas: calm stretch */
@@ -456,22 +461,22 @@ body {
 .cursor--textarea {
   animation: stretch-x 1s ease-in-out infinite;
   width: 1.2rem; height: 1.2rem;
-  background: rgba(200,255,200,0.4);
-  filter: drop-shadow(0 0 6px rgba(200,255,200,0.6));
+  background: rgba(6, 124, 221, 0.945);
+  filter: drop-shadow(0 0 6px rgba(48, 206, 48, 0.6));
 }
 
 /* Headings & paragraphs: slow spin & tint */
 .cursor--text {
   animation: slow-spin 3s linear infinite;
   width: 1.4rem; height: 1.4rem;
-  background: rgba(255,200,255,0.4);
+  background: rgba(192, 22, 192, 0.4);
 }
 
 /* Videos: horizontal wobble */
 .cursor--video {
   animation: wiggle 0.7s ease-in-out infinite;
   width: 2rem; height: 1.2rem;
-  background: rgba(100,150,255,0.4);
+  background: rgba(16, 71, 189, 0.4);
 }
 
 /* Tables: border‐pulse */
@@ -481,7 +486,7 @@ body {
 .cursor--th {
   animation: fade-pulse 1.5s ease-in-out infinite;
   width: 1.5rem; height: 1.5rem;
-  background: rgba(200,200,255,0.4);
+  background: rgba(7, 7, 243, 0.4);
 }
 
 /* Lists: vertical bounce */
@@ -489,7 +494,7 @@ body {
 .cursor--ol {
   animation: bounce 0.8s ease infinite;
   width: 1.2rem; height: 1.2rem;
-  background: rgba(200,255,200,0.4);
+  background: rgba(6, 78, 6, 0.4);
 }
 
 /* Navigation, header, footer: slow grow */
@@ -498,7 +503,7 @@ body {
 .cursor--footer {
   animation: grow 2s ease-in-out infinite;
   width: 1.8rem; height: 1.8rem;
-  background: rgba(255,220,150,0.4);
+  background: rgba(156, 108, 10, 0.4);
 }
 
 /* Misc: code, pre, blockquote: stretch */
@@ -507,9 +512,123 @@ body {
 .cursor--blockquote {
   animation: stretch-x 1.5s ease-in-out infinite;
   width: 1.5rem; height: 1.5rem;
-  background: rgba(255,150,200,0.4);
+  background: rgba(218, 13, 112, 0.4);
 }
 
 /* ========================================================================
    (End of 75+ lines – add your own to reach 169 as needed)
    ======================================================================== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             /* TECH SPHERE */
+
+
+
+
+
+
+
+
+
+
+/* General styles for the logo sphere container */
+.logo-sphere-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  touch-action: pan-x; /* Enable horizontal swiping */
+}
+/* Adjust size for mobile devices */
+@media (max-width: 768px) {
+  .logo-sphere-container {
+    height: 250px; /* Smaller height for mobile */
+  }
+}
+/* Style for individual tech items */
+.tech-item {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: outline-color 0.3s ease;
+}
+/* Tooltip styling */
+.tooltip {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #df0909;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+/* Show tooltip on hover */
+.tech-item:hover .tooltip {
+  opacity: 1;
+}
+/* Add a light shining purple outline when the element is held (pressed) */
+.tech-item:active {
+  outline: 2px solid #a855f7; /* Light shining purple */
+  outline-offset: 4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        /* Hero section */
+
+
+
+
+
+
+
+
