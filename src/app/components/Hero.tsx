@@ -37,7 +37,7 @@ export default function Hero() {
     }, 3000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [rotatingTexts.length])
 
   return (
     <div className={styles.heroContainer}>

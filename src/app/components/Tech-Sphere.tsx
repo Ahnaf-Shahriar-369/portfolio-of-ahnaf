@@ -33,7 +33,6 @@ export default function LogoSphere() {
         radius: window.innerWidth < 768 ? 100 : 150,
         maxSpeed: "normal",
         initSpeed: "normal",
-        direction: 135,
         keep: true,
         useHTML: true,
       });
