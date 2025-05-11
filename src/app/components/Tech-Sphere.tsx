@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import TagCloud from "TagCloud";
-
+import TagCloud from "TagCloud"; // Ensure correct import
 
 const logos = [
   "bootstrap", "css", "docker", "express", "figma",
@@ -21,18 +20,28 @@ export default function LogoSphere() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current) {
+      console.error("containerRef is null");
+      return;
+    }
 
-    const tagCloud = TagCloud(containerRef.current, logos, {
-      radius: window.innerWidth < 768 ? 100 : 150, // Smaller radius for all devices
-      maxSpeed: "normal",
-      initSpeed: "normal",
-      direction: 135,
-      keep: true,
-      useHTML: true,
-    });
+    console.log("Initializing TagCloud with logos:", logos);
 
-    return () => tagCloud.destroy();
+    try {
+      // Wrap containerRef.current in an array to match the expected type
+      const tagCloud = TagCloud([containerRef.current], logos, {
+        radius: window.innerWidth < 768 ? 100 : 150,
+        maxSpeed: "normal",
+        initSpeed: "normal",
+        direction: 135,
+        keep: true,
+        useHTML: true,
+      });
+
+      return () => tagCloud.destroy();
+    } catch (error) {
+      console.error("Error initializing TagCloud:", error);
+    }
   }, []);
 
   return (
