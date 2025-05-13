@@ -341,10 +341,10 @@ body {
   }
 }
 
-.bg-stars {
-  background: url('/path-to-stars-image.png') repeat;
+/* .bg-stars {
+  background: url('/star.jpg') repeat;
   background-size: cover;
-}
+} */
 
 .animate-twinkle {
   animation: twinkle 2s infinite;
@@ -623,7 +623,22 @@ body {
 
 
 
-                        /* Hero section */
+                        /* About IMG */
+
+
+
+
+    
+.about-glow {
+  box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+  transition: box-shadow 0.5s ease-in-out;
+}
+.about-glow:hover {
+  box-shadow: 0 0 25px rgba(45, 212, 191, 0.6), 0 0 35px rgba(14, 165, 233, 0.6);
+}
+.about-glow:active {
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.4);
+}
 
 
 
@@ -632,3 +647,243 @@ body {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+                     /* forAbout Section */
+
+
+
+
+
+
+
+
+
+          /* Add these styles to your existing global.css file */
+
+/* About section styling */
+.about-section {
+  background-color: #1a1a2e;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Background effects */
+.background-effects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: radial-gradient(circle at 20% 30%, rgba(147, 51, 234, 0.15) 0%, transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.1) 0%, transparent 30%);
+  opacity: 0.8;
+}
+
+.background-effects::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.05) 0%, rgba(79, 70, 229, 0.05) 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #c084fc, #a855f7, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Personal info card styling */
+.personal-info-card {
+  background-color: rgba(30, 27, 75, 0.7);
+  backdrop-filter: blur(5px);
+  border: none;
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.15);
+  height: 100%;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+
+/* 3D effect for left card */
+.card-3d-effect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.2) 0%, rgba(79, 70, 229, 0.2) 100%);
+  z-index: -1;
+  transform: translateZ(-10px);
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 30px rgba(147, 51, 234, 0.3);
+}
+
+/* Image container styling */
+/* … your existing imports & resets … */
+
+.image-container-wrapper {
+  position: relative;
+  height: 100%;
+  min-height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  overflow: visible;    /* keep this so nothing gets hidden */
+}
+
+.image-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* only clip the decorative overlay, NOT the actual image */
+.image-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: linear-gradient(135deg, rgba(147, 51, 234, 0.3) 0%, rgba(79, 70, 229, 0.3) 100%); */
+  /* clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%); */
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+/* remove clip-path from the image itself */
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* no clip-path here */
+  transition: all 0.3s ease;
+}
+
+
+.placeholder-image {
+  background: linear-gradient(45deg, #6b46c1, #9f7aea, #b794f4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Glow effect for right section */
+.glow-effect .image-container {
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
+  transform: scale(1.05);
+}
+
+.glow-effect .image-container::after {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.5) 0%, rgba(79, 70, 229, 0.5) 100%);
+}
+
+/* Click effect for right section */
+.click-effect .image-container {
+  animation: pulse-once 1s;
+}
+
+@keyframes pulse-once {
+  0% {
+    box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.7);
+    transform: scale(0.95);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(147, 51, 234, 0);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(147, 51, 234, 0);
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .image-container-wrapper {
+    margin-bottom: 1.5rem;
+  }
+
+  /* On mobile, ensure the image container is centered */
+  .image-container {
+    margin: 0 auto;
+  }
+}
+
+/* Add subtle animations for text elements */
+.about-section h2 {
+  transition: text-shadow 0.3s ease;
+  text-shadow: 0 0 10px rgba(147, 51, 234, 0.3);
+}
+
+.about-section h2:hover {
+  text-shadow: 0 0 15px rgba(147, 51, 234, 0.7);
+}
+
+/* Ensure equal heights on desktop */
+@media (min-width: 768px) {
+  .flex-1 {
+    flex: 1 1 0%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Slider image styles */
+
+
+
+
+
+
+/* Custom bounce for the active slide */
+@keyframes bounce-custom {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+.animate-bounce-custom {
+  animation: bounce-custom 0.6s ease-in-out;
+}

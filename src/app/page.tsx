@@ -7,7 +7,10 @@ import DownBar from "./components/downBar";
 import Cursor from "./components/cursor";
 import "./globals.css";
 import Hero from "./components/Hero";
+// import AboutImg from "./components/AboutImg";
 // import LogoSphere from "./components/Tech-Sphere";
+import About from "./components/About";
+// import Slider from "./components/Slider";
 
 export default function Home() {
   // Fix for the right side background issue
@@ -44,7 +47,14 @@ export default function Home() {
           id="about"
           className="min-h-screen flex items-center justify-center transition-all duration-500 rounded-3xl"
         >
-          <h1 className="text-4xl font-bold">About Section</h1>
+          
+          <About></About>
+          
+          {/* <AboutImg></AboutImg> */}
+
+
+          {/* <Slider /> */}
+
         </section>
 
         <section

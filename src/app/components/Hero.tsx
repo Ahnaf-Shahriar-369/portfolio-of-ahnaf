@@ -15,7 +15,7 @@ export default function Hero() {
   const [isTextChanging, setIsTextChanging] = useState(false)
 
   const rotatingTexts = [
-    "Fitness Enthusiast",
+    
     "Full-stack Developer",
     "Front-end Developer",
     "Backend-Developer",
