@@ -117,7 +117,7 @@ const About = () => {
                   alt="Profile Picture" 
                   width={369} 
                   height={369} 
-                  className="profile-image rounded-3xl"
+                  className="profile-image rounded-full"
                 />
              
               {/* <div className="placeholder-image">
