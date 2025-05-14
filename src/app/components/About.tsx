@@ -90,7 +90,7 @@ const About = () => {
                 <span className="text-purple-100">Bangladesh</span>
               </div>
               <div className="flex items-center">
-                <span className="text-purple-400 font-medium w-24">Degree:</span>
+                <span className="text-purple-400 font-medium w-24">Education:</span>
                 <span className="text-purple-100">Still studying in 8th Class</span>
               </div>
               <div className="flex items-center">
