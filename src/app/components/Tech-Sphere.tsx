@@ -6,7 +6,7 @@ import TagCloud from "TagCloud"; // Ensure correct import
 const logos = [
   "bootstrap", "css", "docker", "express", "figma",
   "git", "github", "html", "js", "mongodb",
-  "mongoose", "next", "node", "react", "redux",
+  "prisma", "next", "node", "react", "redux",
   "sass", "tailwind", "vercel",
 ].map(
   (name) =>
