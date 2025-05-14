@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <Head>
 
-      <link rel="" href="/coder fav.png" />
+        <link rel="icon" type="image/png" href="/favicon.png" /> 
 
       </Head>
         
