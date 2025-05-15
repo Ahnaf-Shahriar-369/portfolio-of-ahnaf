@@ -96,7 +96,7 @@ const About = () => {
               </div>
               <div className="flex items-center">
                 <span className="text-purple-400 font-medium w-24">Languages:</span>
-                <span className="text-purple-100">English, Bengali,Hindi & Urdu</span>
+                <span className="text-purple-100">English/Bengali/Hindi </span>
               </div>
             </div>
           </motion.div>
