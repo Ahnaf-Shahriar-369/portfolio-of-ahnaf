@@ -42,7 +42,7 @@ export default function Home() {
 
       {/* 👇 Loading GIF shown for 3 seconds */}
       {isLoading ? (
-        <div className="fixed top-0 left-0 w-full h-screen bg-black flex items-center justify-center z-50">
+        <div className="fixed top-0 left-0 w-full h-screen bg-black flex items-center justify-center z-50 outline-none border-none">
           {/* 👇 Put your GIF in the public folder (e.g. /public/loading.gif) */}
           <Image
             width={100}
