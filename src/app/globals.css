@@ -1,8 +1,9 @@
+
+
 @import 'tailwindcss';
 /* html, body, #__next {
   cursor: none; 
 } */
-
 
 html, body {
   margin: 0;
@@ -14,39 +15,31 @@ html, body {
 
 
 
-
 body {
   background-color: black;
   color: white;
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
-
 @layer utilities {
   .animate-fadeIn {
     animation: fadeIn 0.3s ease-in-out;
   }
-
   .animate-spin-slow {
     animation: spin 2s linear infinite;
   }
-
   .animate-spin-once {
     animation: spin 0.5s ease-out;
   }
-
   .animate-pulse-slow {
     animation: pulseSlow 2s infinite;
   }
-
   .animate-shimmer-slide {
     animation: shimmerSlide 2s infinite;
   }
-
   .animate-shimmer {
     position: relative;
     overflow: hidden;
   }
-
   .animate-shimmer::after {
     content: "";
     position: absolute;
@@ -64,17 +57,14 @@ body {
     );
     animation: shimmer 3s infinite;
   }
-
   .animate-gradient {
     background-size: 200% 200%;
     animation: gradientShift 3s ease infinite;
   }
-
   .animate-shine {
     position: relative;
     overflow: hidden;
   }
-
   .animate-shine::after {
     content: "";
     position: absolute;
@@ -91,20 +81,16 @@ body {
     transform: rotate(30deg);
     animation: shine 3s infinite;
   }
-
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
-
   .section-active {
     animation: sectionActivate 1s ease-in-out;
   }
-
   .loading-dots::after {
     content: "";
     animation: loadingDots 1.5s infinite;
   }
-
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -115,7 +101,6 @@ body {
       transform: scale(1);
     }
   }
-
   @keyframes spin {
     from {
       transform: rotate(0deg);
@@ -124,7 +109,6 @@ body {
       transform: rotate(360deg);
     }
   }
-
   @keyframes pulse {
     0%,
     100% {
@@ -136,7 +120,6 @@ body {
       transform: scale(1.3);
     }
   }
-
   @keyframes pulseSlow {
     0%,
     100% {
@@ -146,7 +129,6 @@ body {
       transform: scale(1.1);
     }
   }
-
   @keyframes shimmerSlide {
     0% {
       transform: translateX(-100%);
@@ -155,13 +137,11 @@ body {
       transform: translateX(100%);
     }
   }
-
   @keyframes shimmer {
     100% {
       transform: translateX(100%);
     }
   }
-
   @keyframes gradientShift {
     0% {
       background-position: 0% 50%;
@@ -173,7 +153,6 @@ body {
       background-position: 0% 50%;
     }
   }
-
   @keyframes shine {
     0% {
       left: -100%;
@@ -191,7 +170,6 @@ body {
       opacity: 0;
     }
   }
-
   @keyframes float {
     0% {
       transform: translateY(0);
@@ -203,7 +181,6 @@ body {
       transform: translateY(0);
     }
   }
-
   @keyframes sectionActivate {
     0% {
       transform: scale(1);
@@ -218,7 +195,6 @@ body {
       box-shadow: 0 0 0 rgba(128, 0, 255, 0);
     }
   }
-
   @keyframes loadingDots {
     0%,
     20% {
@@ -233,7 +209,6 @@ body {
     }
   }
 }
-
 /* Additional animations for the sidebar */
 @keyframes glow {
   0%,
@@ -244,7 +219,6 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 255, 0.4);
   }
 }
-
 @keyframes iconPop {
   0% {
     transform: scale(1);
@@ -256,21 +230,17 @@ body {
     transform: scale(1);
   }
 }
-
 /* Sidebar specific styles */
 .sidebar-container {
   animation: glow 3s infinite;
 }
-
 .sidebar-icon:hover {
   animation: iconPop 0.3s ease-in-out;
 }
-
 /* Navbar animations */
 .nav-link {
   position: relative;
 }
-
 .nav-link::after {
   content: "";
   position: absolute;
@@ -281,25 +251,20 @@ body {
   background-color: #60a5fa;
   transition: width 0.3s ease;
 }
-
 .nav-link:hover::after,
 .nav-link.active::after {
   width: 100%;
 }
-
 /* DownBar animations */
 .downbar-item {
   transition: all 0.3s ease;
 }
-
 .downbar-item:hover {
   transform: translateY(-5px);
 }
-
 .downbar-item.active {
   position: relative;
 }
-
 .downbar-item.active::before {
   content: "";
   position: absolute;
@@ -313,7 +278,6 @@ body {
 }
 
 
-
 @keyframes shine {
   0% {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -325,11 +289,9 @@ body {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   }
 }
-
 .shine-animation {
   animation: shine 2s infinite;
 }
-
 
 
 @keyframes twinkle {
@@ -340,16 +302,13 @@ body {
     opacity: 1;
   }
 }
-
 /* .bg-stars {
   background: url('/star.jpg') repeat;
   background-size: cover;
 } */
-
 .animate-twinkle {
   animation: twinkle 2s infinite;
 }
-
 
 
 
@@ -376,11 +335,9 @@ body {
 
 
 
-
  /* ==========================================================================
    Custom Highlight Cursor Styles (with touch‐device disable)
    ========================================================================== */
-
 /* 1) Base Cursor (lighter, smaller) */
 .cursor {
   position: fixed;
@@ -401,38 +358,28 @@ body {
     filter 0.15s ease,
     opacity 0.1s ease;
 }
-
 /* Hide when pointer leaves window */
 .cursor--hidden { opacity: 0; }
-
 /* 2) Touch‐device disable via media query */
 @media (pointer: coarse) {
   .cursor { display: none !important; }
 }
-
 /* ========================================================================
     Keyframes & Variants
    ======================================================================== */
-
 /* subtle grow */
 @keyframes grow { 0%,100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.4); } }
-
 /* slide wiggle */
 @keyframes wiggle { 0%,100% { transform: translate(-50%, -50%) translateX(0); } 25% { transform: translate(-50%, -50%) translateX(3px); } 75% { transform: translate(-50%, -50%) translateX(-3px); } }
-
 /* slow spin */
 @keyframes slow-spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
-
 /* fade pulse */
 @keyframes fade-pulse { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
-
 /* stretch horizontal */
 @keyframes stretch-x { 0%,100% { transform: translate(-50%, -50%) scaleX(1); } 50% { transform: translate(-50%, -50%) scaleX(1.3); } }
-
 /* ------------------------------------------------------------------------
    Element‐specific Variants
    ------------------------------------------------------------------------ */
-
 /* Links: pale blue wobble */
 .cursor--link {
   animation: wiggle 0.5s ease-in-out infinite;
@@ -440,7 +387,6 @@ body {
   background: rgba(212, 10, 10, 0.5);
   filter: drop-shadow(0 0 8px rgba(112, 201, 10, 0.7));
 }
-
 /* Buttons: warm pop */
 .cursor--button {
   animation: grow 0.3s ease;
@@ -448,14 +394,12 @@ body {
   background: rgba(8, 216, 95, 0.5);
   filter: drop-shadow(0 0 10px rgba(11, 180, 124, 0.7).7);
 }
-
 /* Images: gentle fade pulse */
 .cursor--img {
   animation: fade-pulse 1.2s ease-in-out infinite;
   width: 1.8rem; height: 1.8rem;
   background: rgb(0, 240, 240)
 }
-
 /* Inputs/Textareas: calm stretch */
 .cursor--input,
 .cursor--textarea {
@@ -464,21 +408,18 @@ body {
   background: rgba(6, 124, 221, 0.945);
   filter: drop-shadow(0 0 6px rgba(48, 206, 48, 0.6));
 }
-
 /* Headings & paragraphs: slow spin & tint */
 .cursor--text {
   animation: slow-spin 3s linear infinite;
   width: 1.4rem; height: 1.4rem;
   background: rgba(192, 22, 192, 0.4);
 }
-
 /* Videos: horizontal wobble */
 .cursor--video {
   animation: wiggle 0.7s ease-in-out infinite;
   width: 2rem; height: 1.2rem;
   background: rgba(16, 71, 189, 0.4);
 }
-
 /* Tables: border‐pulse */
 .cursor--table,
 .cursor--tr,
@@ -488,7 +429,6 @@ body {
   width: 1.5rem; height: 1.5rem;
   background: rgba(7, 7, 243, 0.4);
 }
-
 /* Lists: vertical bounce */
 .cursor--ul,
 .cursor--ol {
@@ -496,7 +436,6 @@ body {
   width: 1.2rem; height: 1.2rem;
   background: rgba(6, 78, 6, 0.4);
 }
-
 /* Navigation, header, footer: slow grow */
 .cursor--nav,
 .cursor--header,
@@ -505,7 +444,6 @@ body {
   width: 1.8rem; height: 1.8rem;
   background: rgba(156, 108, 10, 0.4);
 }
-
 /* Misc: code, pre, blockquote: stretch */
 .cursor--code,
 .cursor--pre,
@@ -514,7 +452,6 @@ body {
   width: 1.5rem; height: 1.5rem;
   background: rgba(218, 13, 112, 0.4);
 }
-
 /* ========================================================================
    (End of 75+ lines – add your own to reach 169 as needed)
    ======================================================================== */
@@ -537,9 +474,7 @@ body {
 
 
 
-
              /* TECH SPHERE */
-
 
 
 
@@ -622,14 +557,12 @@ body {
 
 
 
-
                         /* About IMG */
 
 
 
-
     
-.about-glow {
+/* .about-glow {
   box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
   transition: box-shadow 0.5s ease-in-out;
 }
@@ -638,7 +571,7 @@ body {
 }
 .about-glow:active {
   box-shadow: 0 0 10px rgba(14, 165, 233, 0.4);
-}
+} */
 
 
 
@@ -659,9 +592,7 @@ body {
 
 
 
-
-                     /* forAbout Section */
-
+                     /* for About Section */
 
 
 
@@ -671,7 +602,6 @@ body {
 
 
           /* Add these styles to your existing global.css file */
-
 /* About section styling */
 .about-section {
   background-color: #1a1a2e;
@@ -679,7 +609,6 @@ body {
   overflow: hidden;
   z-index: 1;
 }
-
 /* Background effects */
 .background-effects {
   position: absolute;
@@ -692,7 +621,6 @@ body {
     radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.1) 0%, transparent 30%);
   opacity: 0.8;
 }
-
 .background-effects::before {
   content: "";
   position: absolute;
@@ -702,14 +630,12 @@ body {
   height: 100%;
   background: linear-gradient(135deg, rgba(147, 51, 234, 0.05) 0%, rgba(79, 70, 229, 0.05) 100%);
 }
-
 .text-gradient {
   background: linear-gradient(to right, #c084fc, #a855f7, #8b5cf6);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
-
 /* Personal info card styling */
 .personal-info-card {
   background-color: rgba(30, 27, 75, 0.7);
@@ -724,7 +650,6 @@ body {
   transform-style: preserve-3d;
   transition: all 0.5s ease;
 }
-
 /* 3D effect for left card */
 .card-3d-effect::before {
   content: "";
@@ -739,9 +664,16 @@ body {
   border-radius: 0.5rem;
   box-shadow: 0 8px 30px rgba(147, 51, 234, 0.3);
 }
-
 /* Image container styling */
 /* … your existing imports & resets … */
+
+
+#image-container-right{
+  border-radius:56px;
+  
+
+}
+
 
 .image-container-wrapper {
   position: relative;
@@ -752,8 +684,8 @@ body {
   align-items: center;
   transition: all 0.3s ease;
   overflow: visible;    /* keep this so nothing gets hidden */
+  border-radius: full;
 }
-
 .image-container {
   position: relative;
   width: 300px;
@@ -761,7 +693,6 @@ body {
   transition: all 0.3s ease;
   cursor: pointer;
 }
-
 /* only clip the decorative overlay, NOT the actual image */
 .image-container::after {
   content: "";
@@ -775,7 +706,6 @@ body {
   z-index: 1;
   transition: all 0.3s ease;
 }
-
 /* remove clip-path from the image itself */
 .profile-image {
   width: 100%;
@@ -785,9 +715,8 @@ body {
   transition: all 0.3s ease;
 }
 
-
 .placeholder-image {
-  background: linear-gradient(45deg, #6b46c1, #9f7aea, #b794f4);
+  /* background: linear-gradient(45deg, #6b46c1, #9f7aea, #b794f4); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -795,22 +724,21 @@ body {
   font-size: 1.2rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
-
 /* Glow effect for right section */
 .glow-effect .image-container {
   box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
   transform: scale(1.05);
+  
+  transition: all 0.3s ease;
 }
-
 .glow-effect .image-container::after {
-  background: linear-gradient(135deg, rgba(147, 51, 234, 0.5) 0%, rgba(79, 70, 229, 0.5) 100%);
+  /* background: linear-gradient(135deg, rgba(147, 51, 234, 0.5) 0%, rgba(79, 70, 229, 0.5) 100%); */
+  
 }
-
 /* Click effect for right section */
 .click-effect .image-container {
   animation: pulse-once 1s;
 }
-
 @keyframes pulse-once {
   0% {
     box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.7);
@@ -825,34 +753,28 @@ body {
     transform: scale(1);
   }
 }
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .about-section {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
-
   .image-container-wrapper {
     margin-bottom: 1.5rem;
   }
-
   /* On mobile, ensure the image container is centered */
   .image-container {
     margin: 0 auto;
   }
 }
-
 /* Add subtle animations for text elements */
 .about-section h2 {
   transition: text-shadow 0.3s ease;
   text-shadow: 0 0 10px rgba(147, 51, 234, 0.3);
 }
-
 .about-section h2:hover {
   text-shadow: 0 0 15px rgba(147, 51, 234, 0.7);
 }
-
 /* Ensure equal heights on desktop */
 @media (min-width: 768px) {
   .flex-1 {
@@ -864,26 +786,281 @@ body {
 
 
 
+                        /* for right 2 section */
 
 
 
 
 
 
+/* Moving border animation */
+        @keyframes rotateBorder {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        
+        @keyframes float {
+          0% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+          100% {
+            transform: translateY(0px);
+          }
+        }
+        
+        @keyframes pulse {
+          0% {
+            transform: scale(1);
+            opacity: 0.8;
+          }
+          50% {
+            transform: scale(1.05);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 0.8;
+          }
+        }
+        
+        @keyframes particle {
+          0% {
+            transform: translate(0, 0) scale(0);
+            opacity: 0;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            transform: translate(var(--x), var(--y)) scale(1);
+            opacity: 0;
+          }
+        }
+        
+        @keyframes loadingCircle {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        
+        @keyframes fadeInOut {
+          0% {
+            opacity: 0.3;
+          }
+          50% {
+            opacity: 0.8;
+          }
+          100% {
+            opacity: 0.3;
+          }
+        }
+        
+        /* Loading animation */
+        .loading-circle {
+          position: absolute;
+          top: -20px;
+          left: -20px;
+          right: -20px;
+          bottom: -20px;
+          border-radius: 50%;
+          border: 3px solid transparent;
+          border-top-color: #6a11cb;
+          border-bottom-color: #9b59b6;
+          animation: loadingCircle 2s linear infinite;
+          pointer-events: none;
+          z-index: -1;
+        }
+        
+        /* Purple border container */
+        .purple-border-container {
+          transform: translateZ(0);
+          will-change: transform;
+          animation: float 6s ease-in-out infinite;
+          background: linear-gradient(135deg, #6a11cb, #8e44ad, #9b59b6, #7e57c2, #673ab7);
+          position: relative;
+          z-index: 1;
+        }
+        
+        .purple-border-container.active {
+          animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Moving border effect */
+        .moving-border {
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          right: -2px;
+          bottom: -2px;
+          border-radius: 50%;
+          background: conic-gradient(
+            from 0deg,
+            #6a11cb,
+            #8e44ad,
+            #9b59b6,
+            #7e57c2,
+            #673ab7,
+            #6a11cb
+          );
+          z-index: -1;
+          animation: rotateBorder 4s linear infinite;
+        }
+        
+        .moving-border::before {
+          content: "";
+          position: absolute;
+          top: 6px;
+          left: 6px;
+          right: 6px;
+          bottom: 6px;
+          background: #000;
+          border-radius: 50%;
+          z-index: 1;
+        }
+        
+        .purple-border-container::before {
+          content: "";
+          position: absolute;
+          top: -10px;
+          left: -10px;
+          right: -10px;
+          bottom: -10px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #6a11cb, #8e44ad, #9b59b6, #7e57c2, #673ab7);
+          z-index: -2;
+          filter: blur(15px);
+          opacity: 0;
+          transition: opacity 0.3s ease-in-out;
+        }
+        
+        .purple-border-container.active::before {
+          opacity: 0.7;
+        }
+        
+        /* Click effect */
+        .click-effect .purple-border-container {
+          transform: scale(0.95);
+        }
+        
+        /* Particle effects */
+        .particles-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          z-index: 3;
+        }
+        
+        .particles-container::before,
+        .particles-container::after {
+          content: "";
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.8);
+          opacity: 0;
+          animation: particle 1.5s ease-out infinite;
+        }
+        
+        .particles-container::before {
+          top: 20%;
+          left: 20%;
+          --x: 30px;
+          --y: -40px;
+        }
+        
+        .particles-container::after {
+          bottom: 20%;
+          right: 20%;
+          --x: -30px;
+          --y: 40px;
+          animation-delay: 0.5s;
+        }
+        
+        /* Add more particles with pseudo-elements */
+        .image-container::before,
+        .image-container::after {
+          content: "";
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.8);
+          opacity: 0;
+          z-index: 3;
+          pointer-events: none;
+        }
+        
+        .image-container::before {
+          top: 70%;
+          left: 30%;
+          --x: 40px;
+          --y: 30px;
+        }
+        
+        .image-container::after {
+          top: 40%;
+          right: 30%;
+          --x: -40px;
+          --y: -30px;
+          animation-delay: 0.8s;
+        }
+        
+        .image-container.active::before,
+        .image-container.active::after {
+          animation: particle 2s ease-out infinite;
+        }
+        
+        /* Mobile tap indicator */
+        .tap-indicator {
+          position: absolute;
+          bottom: 15px;
+          left: 0;
+          right: 0;
+          text-align: center;
+          z-index: 5;
+          pointer-events: none;
+          opacity: 0.7;
+          animation: fadeInOut 2s ease-in-out infinite;
+        }
+        
+        .tap-indicator span {
+          background: rgba(0, 0, 0, 0.7);
+          color: white;
+          padding: 4px 10px;
+          border-radius: 12px;
+          font-size: 12px;
+          font-weight: 500;
+        }
+        
+        /* Preload the hover image for smoother transitions */
+        body::after {
+          position: absolute;
+          width: 0;
+          height: 0;
+          overflow: hidden;
+          z-index: -1;
+          content: url('/me-2-m.png');
+        }
+        
+        /* Make sure the component is responsive but maintains aspect ratio */
+        @media (max-width: 480px) {
+          #image-container-right {
+            transform-origin: center;
+            transform: scale(0.85);
+          }
+        }
 
-/* Slider image styles */
-
-
-
-
-
-
-/* Custom bounce for the active slide */
-@keyframes bounce-custom {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-10px); }
-}
-
-.animate-bounce-custom {
-  animation: bounce-custom 0.6s ease-in-out;
-}

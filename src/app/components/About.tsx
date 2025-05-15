@@ -1,11 +1,12 @@
 "use client"
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import Image from "next/image"
+// import Image from "next/image"
+import RightSection from "./right2"
 const About = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [isLeftHovered, setIsLeftHovered] = useState(false)
-  const [isRightHovered, setIsRightHovered] = useState(false)
+  // const [isRightHovered, setIsRightHovered] = useState(false)
   const [isRightClicked, setIsRightClicked] = useState(false)
   // Simple intersection observer
   useEffect(() => {
@@ -60,7 +61,7 @@ const About = () => {
           </motion.p>
         </div>
         {/* Two containers - personal info and image - with perfect alignment */}
-        <div className="flex flex-col md:flex-row justify-center items-stretch gap-8 max-w-5xl mx-auto mb-16">
+        <div className="flex flex-col md:flex-row justify-center items-stretch gap-8 max-w-3xl mx-auto animate-float mb-16">
           {/* Left section with personal info */}
           <motion.div
             className={`personal-info-card p-6 rounded-3xl text-left flex-1  ${isLeftHovered ? "card-3d-effect" : ""}`}
@@ -86,28 +87,41 @@ const About = () => {
                 <span className="text-purple-100">14</span>
               </div>
               <div className="flex items-center">
-                <span className="text-purple-400 font-medium w-24">Country:</span>
-                <span className="text-purple-100">Bangladesh</span>
+                <span className="text-purple-400 font-medium w-24">Location:</span>
+                <span className="text-purple-100">Dhaka/Bangladesh</span>
               </div>
               <div className="flex items-center">
                 <span className="text-purple-400 font-medium w-24">Education:</span>
                 <span className="text-purple-100">Still studying in 8th Class</span>
               </div>
               <div className="flex items-center">
-                <span className="text-purple-400 font-medium w-24">Dob:</span>
-                <span className="text-purple-100">8th July 2010</span>
+                <span className="text-purple-400 font-medium w-24">Languages:</span>
+                <span className="text-purple-100">English, Bengali,Hindi & Urdu</span>
               </div>
             </div>
           </motion.div>
+
+
+
+
+
+        <RightSection></RightSection>
+
+
+
+
           {/* Right section - image container */}
-          <motion.div
-            className={`image-container-wrapper flex-1 flex justify-center items-center  ${isRightHovered ? "glow-effect" : ""} ${isRightClicked ? "click-effect" : ""}`}
+          {/* <motion.div
+            id="image-container-right"
+            style={{ borderRadius: "56px" }}
+            className={`image-container-wrapper flex-1 flex justify-center items- rounded-b-full img-container-right  ${isRightHovered ? "glow-effect" : ""} ${isRightClicked ? "click-effect" : ""}`}
             initial={{ opacity: 0, x: 30 }}
             animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             onMouseEnter={() => setIsRightHovered(true)}
             onMouseLeave={() => setIsRightHovered(false)}
             onClick={() => setIsRightClicked(true)}
+            whileHover={{ rotate: 5 }}
           >
             <div className="image-container ">
               
@@ -117,14 +131,12 @@ const About = () => {
                   alt="Profile Picture" 
                   width={369} 
                   height={369} 
-                  className="profile-image rounded-full"
+                  className="profile-image rounded-full "
                 />
              
-              {/* <div className="placeholder-image">
-                <span>Your Photo</span>
-              </div> */}
+              
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </section>

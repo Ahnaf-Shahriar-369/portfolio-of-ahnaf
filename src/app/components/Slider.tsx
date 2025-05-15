@@ -1,73 +1,54 @@
-// components/slider.tsx
-"use client";
-
 import { useState } from "react";
-import Image from "next/image";
 
-interface Slide {
-  name: string;
-  src: string;
+interface SliderProps {
+  images: string[]; // ← comment: pass your image URLs here
+  height?: string;  // Optional: tailor slide height (e.g. "h-64", "h-80")
 }
 
-const Slider: React.FC = () => {
-  const [active, setActive] = useState<number>(0);
+export default function Slider({ images, height = "h-64" }: SliderProps) {
+  const [current, setCurrent] = useState(0);
+  const lastIndex = images.length - 1;
 
-  const slides: Slide[] = [
-    {
-      name: "Instructor One",
-      src: "/images/instructor1.jpg", // ← Replace with your first image
-    },
-    {
-      name: "Instructor Two",
-      src: "/images/instructor2.jpg", // ← Replace with your second image
-    },
-  ];
+  const prev = () =>
+    setCurrent((i) => (i === 0 ? lastIndex : i - 1));
+  const next = () =>
+    setCurrent((i) => (i === lastIndex ? 0 : i + 1));
 
   return (
-    <div className="w-full flex justify-center py-6 overflow-x-auto">
-      {slides.map((slide, idx) => (
-        <button
-          key={idx}
-          onClick={() => setActive(idx)}
-          className={`
-            flex-shrink-0 m-4
-            transition-transform duration-500 ease-in-out
-            focus:outline-none focus:ring-4 focus:ring-blue-300
-            ${active === idx
-              ? "scale-110 z-20 shadow-2xl animate-bounce-custom"
-              : "scale-90 opacity-80 hover:scale-100 hover:opacity-100 z-10 shadow-md"}
-          `}
-        >
-          {/* Circle-shaped image container, responsive sizes */}
-          <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48">
-            <Image
-              src={slide.src}
-              alt={slide.name}
-              fill
-              className="
-                rounded-full object-cover
-                transition-transform duration-500 ease-out
-                hover:scale-105
-                active:scale-90
-                cursor-pointer
-              "
+    <div className="relative w-full overflow-hidden rounded-full px-8">
+      {/* track */}
+      <div
+        className="flex transition-transform duration-500"
+        style={{ transform: `translateX(-${current * 100}%)` }}
+      >
+        {images.map((src, idx) => (
+          <div
+            key={idx}
+            className={`flex-none w-full ${height}`}
+          >
+            <img
+              
+              src={src}
+              alt={`Slide ${idx + 1}`}
+              className="object-cover w-full h-full"
             />
           </div>
+        ))}
+      </div>
 
-          {/* Name badge */}
-          <div className="
-            absolute bottom-0 left-1/2 transform -translate-x-1/2
-            bg-black/60 text-white text-sm sm:text-base
-            py-1 px-3 rounded-full
-            opacity-80 transition-opacity duration-300
-            hover:opacity-100
-          ">
-            {slide.name}
-          </div>
-        </button>
-      ))}
+      {/* prev/next buttons */}
+      <button
+        onClick={prev}
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white p-2 rounded-full shadow"
+      >
+        ◀
+      </button>
+      <button
+        onClick={next}
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white p-2 rounded-full shadow"
+      >
+        ▶
+      </button>
     </div>
-  );
-};
-
-export default Slider;
+);
+}
