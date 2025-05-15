@@ -36,6 +36,7 @@ export default function Home() {
       <Sidebar />
       <DownBar />
 
+<<<<<<< HEAD
       <main className="min-h-screen  bg-black text-white">
         
         <section
@@ -44,6 +45,29 @@ export default function Home() {
 >
   <Hero />
 </section>
+=======
+      {/* 👇 Loading GIF shown for 3 seconds */}
+      {isLoading ? (
+        <div className="fixed top-0 left-0 w-full h-screen bg-black flex items-center justify-center z-50 outline-none border-none">
+          {/* 👇 Put your GIF in the public folder (e.g. /public/loading.gif) */}
+          <Image
+            width={100}
+            height={100}
+            priority
+            src="/p-orb.gif"
+            alt="Loading..."
+            className="  object-contain"
+          />
+        </div>
+      ) : (
+        <main className="min-h-screen bg-black text-white transition-opacity duration-1000">
+          <section
+            id="home"
+            className="min-h-screen flex items-center justify-center transition-all duration-500 rounded-3xl p-0 m-0"
+          >
+            <Hero />
+          </section>
+>>>>>>> 23f0d2f73235ef32f9baf235e4f8b7479d18f898
 
         <section
           id="about"
