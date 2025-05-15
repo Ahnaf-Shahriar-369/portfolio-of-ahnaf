@@ -1,15 +1,13 @@
-// right2.tsx
 "use client"
 import { useState, useEffect, useRef } from "react"
 import { motion, useAnimation, useInView } from "framer-motion"
 import Image from "next/image"
 
 interface RightSectionProps {
-  isVisible?: boolean;
   className?: string;
 }
 
-const RightSection = ({ isVisible = true, className = "" }: RightSectionProps) => {
+const RightSection = ({ className = "" }: RightSectionProps) => {
   const [isImageActive, setIsImageActive] = useState(false)
   const [isRightClicked, setIsRightClicked] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
