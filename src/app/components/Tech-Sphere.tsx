@@ -4,9 +4,9 @@ import React, { useEffect, useRef } from "react";
 import TagCloud from "TagCloud"; // Ensure correct import
 
 const logos = [
-  "bootstrap", "css", "docker", "express", "figma",
-  "git", "github", "html", "js", "mongodb",
-  "prisma", "next", "node", "react", "redux",
+  "bootstrap", "css", "material", "express", "shadecn",
+  "git", "github", "html", "javascript", "mongodb",
+  "prisma", "nextjs", "nodejs", "react", "redux",
   "sass", "tailwind", "vercel",
 ].map(
   (name) =>

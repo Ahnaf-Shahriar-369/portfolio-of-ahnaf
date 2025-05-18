@@ -39,7 +39,7 @@ const About = () => {
       <div className="background-effects"></div>
       <div className="container mx-auto max-w-6xl">
         {/* Top part with heading and paragraph */}
-        <div className="mb-16">
+        <div className="mb-12">
           <motion.h2
             className="text-4xl md:text-5xl font-bold mb-8 text-gradient"
             initial={{ opacity: 0, y: 20 }}

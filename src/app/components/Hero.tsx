@@ -64,7 +64,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <p className={styles.subtitleText}>Full Stack Developer | Typescript | Next.JS | Tailwind CSS</p>
+          <p className={styles.subtitleText}>Full Stack Developer  Next.JS | React | Tailwind CSS | Typescript | NodeJS | MongoDB | ExpressJS | Prisma</p>
 
           <div className={styles.buttonContainer}>
             <Link
