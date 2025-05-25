@@ -11,6 +11,8 @@ import About from "./components/About";
 // import SkillCard from "./components/SkillCard";
 // import SkillCardLayout from "./components/SkillCardLayout";
 import SkillCardsLayout from "./components/SkillCardsLayout";
+// import ProjectCard from "./components/ProjectCard";
+import ProjectLayout from "./components/PcLayout";
 
 
 
@@ -160,7 +162,11 @@ export default function Home() {
           id="projects"
           className="min-h-screen flex items-center justify-center mb-32 transition-all duration-500 rounded-3xl"
         >
-          <h1 className="text-4xl font-bold">Projects Section</h1>
+          {/* <h1 className="text-4xl font-bold">Projects Section</h1> */}
+
+
+          <ProjectLayout />
+
         </section>
       </main> 
       <DownBar />
