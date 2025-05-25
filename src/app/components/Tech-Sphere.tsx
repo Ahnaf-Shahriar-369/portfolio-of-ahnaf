@@ -1,7 +1,11 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import TagCloud from "TagCloud"; // Ensure correct import
+// Instead of:
+import TagCloud from 'TagCloud'
+
+// Try one of these:
+
 
 const logos = [
   "bootstrap", "css", "material", "express", "shadecn",
