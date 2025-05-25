@@ -2,8 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 // Instead of:
-
-import TagCloud from 'TagCloud'
+    import  TagCloud from 'TagCloud'
 
 
 // Try one of these:

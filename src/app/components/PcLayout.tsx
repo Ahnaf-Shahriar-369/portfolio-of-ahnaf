@@ -359,16 +359,18 @@ export default function ProjectLayout() {
               animate="visible"
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
             >
-              {visibleProjects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  variants={cardVariants}
-                  whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                  className="flex justify-center"
-                >
-                  <ProjectCard />
-                </motion.div>
-              ))}
+              {visibleProjects.map((project, ) => {
+                  return (
+                      <motion.div
+                          key={project.id}
+                          variants={cardVariants}
+                          whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                          className="flex justify-center"
+                      >
+                          <ProjectCard />
+                      </motion.div>
+                  )
+              })}
             </motion.div>
           )}
         </AnimatePresence>

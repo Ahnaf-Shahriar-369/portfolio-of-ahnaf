@@ -4,7 +4,8 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ArrowRight, Download } from "lucide-react"
 import styles from "./Hero.module.css"
-import LogoSphere from "./Tech-Sphere"
+// import LogoSphere from "./Tech-Sphere"
+import LogoSphere from "./LogoSphere"
 
 export default function Hero() {
   const [isGithubHovered, setIsGithubHovered] = useState(false)
@@ -99,6 +100,7 @@ export default function Hero() {
         {/* Right Side - Space for Tech Sphere */}
         <div className={styles.techSphereContainer}>
           {/* This space is reserved for the tech sphere component */}
+          {/* <LogoSphere /> */}
           <LogoSphere />
 
           {/* Background Shine Effect */}
