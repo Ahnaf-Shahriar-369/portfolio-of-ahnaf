@@ -1060,3 +1060,33 @@ body {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+          /* project-card */
+
+
+
+
+
+
+
+          /* globals.css */
+@keyframes autoScroll {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.animate-autoScroll {
+  animation: autoScroll 20s linear infinite;
+}
+
+
