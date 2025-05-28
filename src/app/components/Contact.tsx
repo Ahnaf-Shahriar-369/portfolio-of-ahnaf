@@ -161,7 +161,7 @@ export default function ContactForm() {
               {/* Header with neon glow effect - Responsive typography */}
               <div className="text-center mb-6 sm:mb-8 space-y-3 sm:space-y-4">
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent neon-text gradient-animate leading-tight">
-                  Let's Have a Chat
+                  Let`s Have a Chat
                 </h1>
                 <div className="h-0.5 sm:h-1 w-16 sm:w-20 bg-gradient-to-r from-pink-500 to-purple-500 mx-auto rounded-full shadow-lg shadow-purple-500/50 shimmer-bg"></div>
                 <p className="text-purple-200 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed px-2 sm:px-0">
