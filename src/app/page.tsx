@@ -13,6 +13,9 @@ import About from "./components/About";
 import SkillCardsLayout from "./components/SkillCardsLayout";
 // import ProjectCard from "./components/ProjectCard";
 import ProjectLayout from "./components/PcLayout";
+import Contact from "./components/Contact";
+// import NeonTicTacToe from "./components/NeonTicTacToe";
+// import NeonTicTacToe from "./components/Tic";
 
 
 
@@ -104,6 +107,10 @@ export default function Home() {
       <Cursor />
       <Navbar />
       <Sidebar />
+      {/* <NeonTicTacToe /> */}
+      
+      
+      
 
 
       <main className="min-h-screen  bg-black text-white">
@@ -160,16 +167,30 @@ export default function Home() {
 
         <section
           id="projects"
-          className="min-h-screen flex items-center justify-center mb-32 transition-all duration-500 rounded-3xl"
+          className="min-h-screen flex items-center justify-center mb- transition-all duration-500 rounded-3xl"
         >
           {/* <h1 className="text-4xl font-bold">Projects Section</h1> */}
 
 
           <ProjectLayout />
+          {/* <NeonTicTacToe /> */}
 
+          
+
+          {/* <Contact></Contact> */}
+
+        </section>
+
+        <section
+  id="contact"
+  className="min-h-screen flex items-center justify-center transition-all duration-500 rounded-3xl"
+>
+          {/* <h1 className="text-4xl font-bold">Contact Section</h1> */}
+          <Contact></Contact>
         </section>
       </main> 
       <DownBar />
+      
     </>
   );
 }
