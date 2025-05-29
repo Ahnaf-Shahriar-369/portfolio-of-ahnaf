@@ -105,7 +105,7 @@ export default function SkillCard({ imageSrc, name, description, imageAlt = "Ski
   return (
     <motion.div
       ref={cardRef}
-      className="relative w-80 h-80 rounded-2xl overflow-hidden cursor-pointer animate-float"
+      className="relative w-80 h-80 rounded-2xl overflow-hidden cursor-pointer "
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{
         opacity: isVisible ? 1 : 0,

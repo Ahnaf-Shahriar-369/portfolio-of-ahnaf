@@ -111,13 +111,13 @@ export default function SkillCardsLayout() {
       id: 14,
       name: "Vercel",
       description: "A cloud platform for web development and deployment.",
-      imageSrc: "/logos/vercell.png"
+      imageSrc: "/logos/vercel.svg"
     },
     {
       id: 15,
       name: "ShadCN",
       description: "Unstyled, accessible UI components built with Radix and Tailwind CSS.",
-      imageSrc: "/logos/shadcnn.png"
+      imageSrc: "/logos/shadcn.svg"
     },
     {
       id: 16,
@@ -140,7 +140,7 @@ export default function SkillCardsLayout() {
   const duplicatedSkills = useMemo(() => [...skills, ...skills, ...skills], [skills])
 
   // Calculate the width of a single set of skills - memoized to prevent recalculation
-  const singleSetWidth = useMemo(() => skills.length * 340, [skills])
+  const singleSetWidth = useMemo(() => skills.length * 140, [skills])
 
   useEffect(() => {
     // Trigger the appearance animation after component mount
