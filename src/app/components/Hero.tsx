@@ -1,12 +1,11 @@
 "use client"
-
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ArrowRight, Download } from "lucide-react"
 import styles from "./Hero.module.css"
 // import LogoSphere from "./Tech-Sphere"
 import LogoSphere from "./LogoSphere"
-
+// import LogoSphere2 from "/Logo-Sphere2"
 export default function Hero() {
   const [isGithubHovered, setIsGithubHovered] = useState(false)
   const [isResumeHovered, setIsResumeHovered] = useState(false)
@@ -14,7 +13,6 @@ export default function Hero() {
   const [isResumeClicked, setIsResumeClicked] = useState(false)
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
   const [isTextChanging, setIsTextChanging] = useState(false)
-
   const rotatingTexts = [
     
     "Full-stack Developer",
@@ -26,25 +24,20 @@ export default function Hero() {
     "Software Engineer",
     
   ]
-
   useEffect(() => {
     const interval = setInterval(() => {
       setIsTextChanging(true)
-
       setTimeout(() => {
         setCurrentTextIndex((prevIndex) => (prevIndex + 1) % rotatingTexts.length)
         setIsTextChanging(false)
       }, 500)
     }, 3000)
-
     return () => clearInterval(interval)
   }, [rotatingTexts.length])
-
   return (
     <div className={styles.heroContainer}>
       {/* Background Shine Effect */}
       <div className={styles.backgroundShine}></div>
-
       {/* Main Content */}
       <main className={styles.heroMain}>
         {/* Left Side - Text Content */}
@@ -56,7 +49,6 @@ export default function Hero() {
             <br />
             Shahriar
           </h1>
-
           <div className={styles.perspective}>
             <div className={styles.rotatingTextContainer}>
               <span className={`${styles.rotatingText} ${isTextChanging ? styles.shatterOut : styles.active}`}>
@@ -64,9 +56,7 @@ export default function Hero() {
               </span>
             </div>
           </div>
-
           <p className={styles.subtitleText}>Full Stack Developer  Next.JS | React | Tailwind CSS | Typescript | NodeJS | MongoDB | ExpressJS | Prisma</p>
-
           <div className={styles.buttonContainer}>
             <Link
               href="https://github.com/Ahnaf-Shahriar-369"
@@ -82,7 +72,7 @@ export default function Hero() {
               <ArrowRight size={18} className={`${styles.arrowIcon} ${isGithubHovered ? styles.arrowMoved : ""}`} />
             </Link>
             <Link
-              href="/resume"
+              href="https://drive.proton.me/urls/HBH57DYT3W#pt5IXOFVa9a3"
               className={`${styles.buttonEffect} ${styles.resumeButton} ${isResumeClicked ? styles.buttonClicked : ""}`}
               onMouseEnter={() => setIsResumeHovered(true)}
               onMouseLeave={() => setIsResumeHovered(false)}
@@ -96,15 +86,13 @@ export default function Hero() {
             </Link>
           </div>
         </div>
-
         {/* Right Side - Space for Tech Sphere */}
         <div className={styles.techSphereContainer}>
           {/* This space is reserved for the tech sphere component */}
           {/* <LogoSphere /> */}
           <LogoSphere />
-
+          {/* <LogoSphere2/> */}
           {/* Background Shine Effect */}
-
           {/* Optimized Tech Sphere Shine Effects - Reduced to just two key elements */}
           <div className={styles.techSphereShineBottom}></div>
           <div className={styles.techSphereShineHorizontal}></div>

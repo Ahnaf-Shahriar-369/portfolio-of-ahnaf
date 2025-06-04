@@ -94,11 +94,14 @@ export default function Sidebar() {
         <SidebarIcon icon={<Linkedin size={28} />} href="https://linkedin.com" delay={0.5} color="text-[#0077b5]" />
         <SidebarIcon
           icon={<Mail size={28} />}
-          href="mailto:ahnafshahriar.dev@protonmail.com"
+          href="mailto:ahnafshahriar.dev@protonmail.com" 
           delay={1}
           color="text-orange-500"
+          
+          // Example badge count
+          
         />
-        <SidebarIcon icon={<FileText size={28} />} href="/resume" delay={1.5} color="text-blue-300" />
+        <SidebarIcon icon={<FileText size={28} />} href="https://drive.proton.me/urls/HBH57DYT3W#pt5IXOFVa9a3" delay={1.5} color="text-blue-300" />
       </div>
     </div>
   )

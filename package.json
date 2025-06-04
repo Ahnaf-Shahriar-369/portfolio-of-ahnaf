@@ -13,10 +13,10 @@
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.2.7",
-    "TagCloud": "^2.5.0",
     "animation": "^0.1.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "controls": "^0.7.5",
     "framer-motion": "^12.11.0",
     "gsap": "^3.13.0",
     "lucide-react": "^0.511.0",
@@ -25,6 +25,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^4.10.1",
+    "TagCloud": "^2.5.0",
     "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {

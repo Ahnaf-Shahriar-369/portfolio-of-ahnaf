@@ -188,6 +188,30 @@ export default function NeonTicTacToe() {
     setScores({ wins: 0, losses: 0, draws: 0 })
   }
 
+  // Fixed color particles
+  const fixedParticles = [
+    { left: "10%", top: "15%" },
+    { left: "20%", top: "70%" },
+    { left: "30%", top: "40%" },
+    { left: "40%", top: "80%" },
+    { left: "50%", top: "20%" },
+    { left: "60%", top: "60%" },
+    { left: "70%", top: "35%" },
+    { left: "80%", top: "75%" },
+    { left: "90%", top: "25%" },
+    { left: "15%", top: "50%" },
+    { left: "25%", top: "85%" },
+    { left: "35%", top: "30%" },
+    { left: "45%", top: "65%" },
+    { left: "55%", top: "10%" },
+    { left: "65%", top: "55%" },
+    { left: "75%", top: "45%" },
+    { left: "85%", top: "60%" },
+    { left: "95%", top: "35%" },
+    { left: "60%", top: "90%" },
+    { left: "80%", top: "10%" },
+  ]
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 space-y-6 relative">
       {/* Enhanced CSS for advanced animations */}
@@ -200,13 +224,11 @@ export default function NeonTicTacToe() {
             text-shadow: 0 0 2px currentColor, 0 0 5px currentColor, 0 0 8px currentColor, 0 0 12px currentColor;
           }
         }
-        
         @keyframes cell-pop {
           0% { transform: scale(0.8) rotate(-10deg); opacity: 0; }
           50% { transform: scale(1.2) rotate(5deg); }
           100% { transform: scale(1) rotate(0deg); opacity: 1; }
         }
-        
         @keyframes winning-pulse {
           0%, 100% { 
             background: rgba(236, 72, 153, 0.3);
@@ -219,29 +241,24 @@ export default function NeonTicTacToe() {
             box-shadow: 0 0 30px rgba(236, 72, 153, 0.8);
           }
         }
-        
         @keyframes celebration {
           0%, 100% { transform: scale(1) rotate(0deg); }
           25% { transform: scale(1.1) rotate(-5deg); }
           75% { transform: scale(1.1) rotate(5deg); }
         }
-        
         @keyframes defeat-shake {
           0%, 100% { transform: translateX(0); }
           10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
           20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
-        
         @keyframes ai-thinking {
           0%, 100% { opacity: 0.3; transform: scale(0.95); }
           50% { opacity: 1; transform: scale(1.05); }
         }
-        
         @keyframes particle-float {
           0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
           50% { transform: translateY(-20px) rotate(180deg); opacity: 0.5; }
         }
-        
         @keyframes rainbow-border {
           0% { border-color: #ec4899; }
           25% { border-color: #8b5cf6; }
@@ -249,17 +266,14 @@ export default function NeonTicTacToe() {
           75% { border-color: #06b6d4; }
           100% { border-color: #ec4899; }
         }
-        
         @keyframes screen-flash {
           0%, 100% { background: transparent; }
           50% { background: rgba(236, 72, 153, 0.1); }
         }
-        
         @keyframes difficulty-glow {
           0%, 100% { box-shadow: 0 0 10px currentColor; }
           50% { box-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
         }
-        
         .neon-title { animation: neon-glow 2s ease-in-out infinite; }
         .cell-animate { animation: cell-pop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
         .winning-cell { animation: winning-pulse 1s ease-in-out infinite; }
@@ -270,14 +284,12 @@ export default function NeonTicTacToe() {
         .rainbow-border { animation: rainbow-border 2s linear infinite; }
         .screen-flash { animation: screen-flash 0.3s ease-in-out 3; }
         .difficulty-selected { animation: difficulty-glow 1s ease-in-out infinite; }
-        
         .glass-effect {
           backdrop-filter: blur(16px);
           -webkit-backdrop-filter: blur(16px);
           background: rgba(255, 255, 255, 0.1);
           border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
         .glass-hover:hover {
           backdrop-filter: blur(20px);
           background: rgba(255, 255, 255, 0.15);
@@ -306,26 +318,24 @@ export default function NeonTicTacToe() {
         </div>
       )}
 
-      {/* Floating Particles */}
+      {/* Fixed Color Floating Particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {fixedParticles.map((p, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full particle-animation opacity-60"
+            className="absolute w-2 h-2 rounded-full particle-animation opacity-60"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${3 + Math.random() * 2}s`,
+              left: p.left,
+              top: p.top,
+              background: i % 3 === 0
+                ? "linear-gradient(to right, #f472b6, #a78bfa)"
+                : i % 3 === 1
+                  ? "linear-gradient(to right, #60a5fa, #818cf8)"
+                  : "linear-gradient(to right, #fbbf24, #f472b6)"
             }}
           />
         ))}
       </div>
-
-      {/* Title */}
-      <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent neon-title">
-        Neon Tic Tac Toe
-      </h1>
 
       {/* Difficulty Selection */}
       <div className="glass-effect rounded-2xl p-6 shadow-xl">
