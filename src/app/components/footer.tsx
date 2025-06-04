@@ -118,7 +118,7 @@ export default function FooterSection() {
               </div>
               <p className="text-gray-300 text-base sm:text-lg leading-relaxed max-w-md transform transition-all duration-500 hover:text-white">
                 I offer professional web development services with a focus on creating user-friendly, responsive, and
-                beautiful websites. Let's work together to bring your ideas to life!
+                beautiful websites. Let&apos;s work together to bring your ideas to life!
               </p>
             </div>
 
