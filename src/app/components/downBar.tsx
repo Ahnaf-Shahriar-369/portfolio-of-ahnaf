@@ -3,12 +3,14 @@
 import { useState, useRef, useEffect } from "react";
 import { Play, CirclePause, Moon, Sun } from "lucide-react";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 function DownBar() {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
   // State to track if music is playing
   const [isPlaying, setIsPlaying] = useState(false);
-  // State to track dark/light mode
-  const [isDarkMode, setIsDarkMode] = useState(true);
   // State to track language (true for English, false for Bangla)
   const [isEnglish, setIsEnglish] = useState(true);
   // State to track loading
@@ -19,9 +21,12 @@ function DownBar() {
 
   // Simulate loading animation
   useEffect(() => {
+    setIsLoading(true);
     const loadingTimer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
+
+    setMounted(true);
 
     return () => {
       clearTimeout(loadingTimer);
@@ -39,11 +44,6 @@ function DownBar() {
     }
 
     setIsPlaying(!isPlaying); // Update the state
-  };
-
-  // Toggle dark/light mode (just visual, doesn't affect the page)
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
   };
 
   // Toggle language
@@ -82,15 +82,19 @@ function DownBar() {
           {/* Dark/Light mode button */}
           <div className="relative group">
             <button
-              type="button"
-              className="cursor-pointer p-2 rounded-full hover:bg-gray-200/50 transition-all duration-300 hover:scale-110 active:scale-95 sm:p-1"
-              onClick={toggleDarkMode}
-            >
-              {isDarkMode ? <Sun size={20} className="text-yellow-300" /> : <Moon size={20} />}
-            </button>
-            <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
-              {isDarkMode ? "Light" : "Dark"}
-            </span>
+  type="button"
+  className="cursor-pointer p-2 rounded-full hover:bg-gray-200/50 transition-all duration-300 hover:scale-110 active:scale-95 sm:p-1"
+  onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
+>
+  {mounted && (resolvedTheme === "dark" ? (
+    <Sun size={20} className="text-yellow-300" />
+  ) : (
+    <Moon size={20} />
+  ))}
+</button>
+<span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+  {mounted && (resolvedTheme === "dark" ? "Light" : "Dark")}
+</span>
           </div>
 
           {/* Language button */}

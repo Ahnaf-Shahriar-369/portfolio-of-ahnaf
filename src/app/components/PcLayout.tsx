@@ -257,7 +257,7 @@ export default function ProjectLayout() {
   )
 
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-[#0f0f23] overflow-hidden w-full h-full">
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 dark:bg-[#0f0f23] overflow-hidden w-full h-full bg-amber-50">
       {/* ========================================
           OPTIMIZED STATIC BACKGROUND SYSTEM
       ======================================== */}
@@ -320,7 +320,7 @@ export default function ProjectLayout() {
               My Projects
             </span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
+          <p className="text-gray-400 dark:text-pink-500 text-lg max-w-2xl mx-auto mb-8">
             A showcase of my recent work and creative solutions. Each project represents a unique challenge and learning
             experience.
           </p>

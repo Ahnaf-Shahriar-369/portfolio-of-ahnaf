@@ -223,7 +223,7 @@ export default function SkillCardsLayout() {
   }
 
   return (
-    <section className="relative py-6 md:py-12 bg-gradient-to-b from-gray-900 via-gray-900 to-black overflow-hidden w-full">
+    <section className="relative py-6 md:py-12 bg-gradient-to-b from-gray-900 via-gray-900 to-black overflow-hidden  w-full">
       {/* Optimized background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-20">

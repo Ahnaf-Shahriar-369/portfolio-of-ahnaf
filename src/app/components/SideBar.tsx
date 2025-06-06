@@ -14,7 +14,13 @@ interface SidebarIconProps {
   color?: string
 }
 
-const SidebarIcon: React.FC<SidebarIconProps> = ({ icon, href, delay, badge, color = "text-white" }) => {
+const SidebarIcon: React.FC<SidebarIconProps> = ({
+  icon,
+  href,
+  delay,
+  badge,
+  color = "text-white dark:text-white",
+}) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
 
@@ -43,13 +49,13 @@ const SidebarIcon: React.FC<SidebarIconProps> = ({ icon, href, delay, badge, col
       {icon}
 
       {badge !== undefined && (
-        <span className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-orange-500 rounded-full">
+        <span className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 text-xs font-bold text-white dark:text-white bg-violet-500 dark:bg-emerald-500 rounded-full">
           {badge}
         </span>
       )}
 
       {isHovered && (
-        <span className="absolute left-14 px-2 py-1 text-sm font-bold text-white bg-gray-800 rounded-md whitespace-nowrap animate-fadeIn z-10">
+        <span className="absolute left-14 px-2 py-1 text-sm font-bold text-white dark:text-white bg-gray-800/80 dark:bg-gray-800/80 backdrop-blur-md rounded-md whitespace-nowrap animate-fadeIn z-10 border border-white/20 dark:border-white/20">
           {href.replace("https://", "").replace("mailto:", "")}
         </span>
       )}
@@ -81,27 +87,45 @@ export default function Sidebar() {
   if (!mounted || isLoading) return null
 
   return (
-    <div
-      className="fixed left-4 top-1/2 -translate-y-1/2 z-30 md:left-2 md:top-1/2 md:-translate-y-1/2"
-    >
+    <div className="fixed left-4 top-1/2 -translate-y-1/2 z-30 md:left-2 md:top-1/2 md:-translate-y-1/2">
       <div
-        className="flex flex-col items-center justify-center w-[69px] h-[269px] bg-[#0a0a2e] rounded-3xl p-6 shadow-lg transition-all duration-700 animate-fadeIn md:w-[50px] md:h-auto md:p-2 md:rounded-3xl"
-        style={{
-          boxShadow: "0 0 20px rgba(0, 0, 255, 0.2)",
-        }}
+        className={`flex flex-col items-center justify-center w-[50px] h-[200px] 
+          backdrop-blur-2xl 
+          bg-white/20 dark:bg-pink-900/20
+          text-white dark:text-white
+          rounded-3xl p-6 
+          transition-all duration-700 animate-fadeIn 
+          md:w-[50px] md:h-auto md:p-2 md:rounded-3xl
+          border border-white/30 dark:border-white/30
+          hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]
+          before:absolute before:inset-0 before:rounded-3xl before:bg-gradient-to-b before:from-white/30 before:to-transparent before:pointer-events-none before:z-[-1]
+          after:absolute after:inset-0 after:rounded-3xl after:shadow-[inset_0_0_10px_rgba(255,255,255,0.2)] after:pointer-events-none after:z-[-1]
+        `}
       >
-        <SidebarIcon icon={<Github size={28} />} href="https://github.com/Ahnaf-Shahriar-369" delay={0} />
-        <SidebarIcon icon={<Linkedin size={28} />} href="https://linkedin.com" delay={0.5} color="text-[#0077b5]" />
+        <SidebarIcon
+          icon={<Github size={28} />}
+          href="https://github.com/Ahnaf-Shahriar-369"
+          delay={0}
+          color="text-white dark:text-white"
+        />
+        <SidebarIcon
+          icon={<Linkedin size={28} />}
+          href="https://linkedin.com"
+          delay={0.5}
+          color="text-[#0077b5] dark:text-[#0077b5]"
+        />
         <SidebarIcon
           icon={<Mail size={28} />}
-          href="mailto:ahnafshahriar.dev@protonmail.com" 
+          href="mailto:ahnafshahriar.dev@protonmail.com"
           delay={1}
-          color="text-orange-500"
-          
-          // Example badge count
-          
+          color="text-orange-500 dark:text-orange-500"
         />
-        <SidebarIcon icon={<FileText size={28} />} href="https://drive.proton.me/urls/HBH57DYT3W#pt5IXOFVa9a3" delay={1.5} color="text-blue-300" />
+        <SidebarIcon
+          icon={<FileText size={28} />}
+          href="https://drive.proton.me/urls/HBH57DYT3W#pt5IXOFVa9a3"
+          delay={1.5}
+          color="text-blue-300 dark:text-blue-300"
+        />
       </div>
     </div>
   )
