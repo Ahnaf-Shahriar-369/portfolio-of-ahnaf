@@ -89,17 +89,7 @@ export default function Sidebar() {
   return (
     <div className="fixed left-4 top-1/2 -translate-y-1/2 z-30 md:left-2 md:top-1/2 md:-translate-y-1/2">
       <div
-        className={`flex flex-col items-center justify-center w-[50px] h-[200px] 
-          backdrop-blur-2xl 
-          bg-white dark:bg-purple-900/20
-          text-white dark:text-white
-          rounded-3xl p-6 
-          transition-all duration-700 animate-fadeIn 
-          md:w-[50px] md:h-auto md:p-2 md:rounded-3xl
-          border border-white/30 dark:border-white/30
-          hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]
-          before:absolute before:inset-0 before:rounded-3xl before:bg-gradient-to-b before:from-white/30 before:to-transparent before:pointer-events-none before:z-[-1]
-          after:absolute after:inset-0 after:rounded-3xl after:shadow-[inset_0_0_10px_rgba(255,255,255,0.2)] after:pointer-events-none after:z-[-1]
+        className={`flex flex-col items-center justify-center w-[69px] h-[269px] bg-violet-500] dark:bg-gray-800 rounded-3xl p-6 shadow-lg transition-all duration-700 animate-fadeIn md:w-[50px] md:h-auto md:p-2 md:rounded-3xl
         `}
       >
         <SidebarIcon

@@ -1,9 +1,9 @@
 
+@import 'tailwindcss/preflight';
 
+@tailwind utilities;
 @import 'tailwindcss';
-@import "tw-animate-css";
-
-
+@import 'tw-animate-css';
 
 :root {
   --color-primary: #ff0000;
@@ -1111,5 +1111,4 @@ body {
 .animate-autoScroll {
   animation: autoScroll 20s linear infinite;
 }
-
 
