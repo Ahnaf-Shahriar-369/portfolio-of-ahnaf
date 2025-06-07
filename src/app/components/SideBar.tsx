@@ -91,7 +91,7 @@ export default function Sidebar() {
       <div
         className={`flex flex-col items-center justify-center w-[50px] h-[200px] 
           backdrop-blur-2xl 
-          bg-white/20 dark:bg-pink-900/20
+          bg-white dark:bg-purple-900/20
           text-white dark:text-white
           rounded-3xl p-6 
           transition-all duration-700 animate-fadeIn 
