@@ -145,7 +145,11 @@ export default function Home() {
         <section
           id="skills"
           className="min-h- flex items-center justify-center transition-all duration-500 rounded-3xl"
+
+          
         >
+        
+
           {/* <h1 className="text-4xl font-bold">Skills Section</h1> */}
 
           <SkillCardsLayout></SkillCardsLayout>
@@ -164,6 +168,9 @@ export default function Home() {
     
 
         </section>
+
+        
+
 
         <section
           id="projects"

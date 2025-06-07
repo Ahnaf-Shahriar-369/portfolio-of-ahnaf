@@ -19,7 +19,7 @@ const SidebarIcon: React.FC<SidebarIconProps> = ({
   href,
   delay,
   badge,
-  color = "text-white dark:text-white",
+  color = "text-gray-800 dark:text-white",
 }) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
@@ -27,12 +27,12 @@ const SidebarIcon: React.FC<SidebarIconProps> = ({
   return (
     <Link
       href={href}
-      className={`relative flex items-center justify-center w-10 h-12 mb-4 rounded-full 
+      className={`sidebar-icon relative flex items-center justify-center w-10 h-12 mb-4 rounded-full 
         ${color} 
-        transition-all duration-300 ease-in-out
-        hover:scale-110 hover:brightness-125
-        animate-float
-        ${isClicked ? "scale-90 brightness-75" : ""}
+        transition-all duration-500 ease-out
+        hover:scale-110 hover:rotate-3
+        active:scale-95
+        ${isClicked ? "scale-90" : ""}
       `}
       style={{
         animationDelay: `${delay}s`,
@@ -46,18 +46,19 @@ const SidebarIcon: React.FC<SidebarIconProps> = ({
         setTimeout(() => setIsClicked(false), 300)
       }}
     >
-      {icon}
+      <div className="icon-wrapper">{icon}</div>
 
       {badge !== undefined && (
-        <span className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 text-xs font-bold text-white dark:text-white bg-violet-500 dark:bg-emerald-500 rounded-full">
+        <span className="badge absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-gradient-to-r from-violet-500 to-purple-600 dark:from-emerald-400 dark:to-teal-500 rounded-full shadow-lg animate-pulse">
           {badge}
         </span>
       )}
 
       {isHovered && (
-        <span className="absolute left-14 px-2 py-1 text-sm font-bold text-white dark:text-white bg-gray-800/80 dark:bg-gray-800/80 backdrop-blur-md rounded-md whitespace-nowrap animate-fadeIn z-10 border border-white/20 dark:border-white/20">
+        <div className="tooltip absolute left-16 px-3 py-2 text-sm font-medium text-slate-800 dark:text-slate-200 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-lg whitespace-nowrap shadow-xl border border-white/20 dark:border-slate-700/50 z-10">
+          <div className="tooltip-arrow absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-white/90 dark:bg-slate-800/90 rotate-45 border-l border-b border-white/20 dark:border-slate-700/50"></div>
           {href.replace("https://", "").replace("mailto:", "")}
-        </span>
+        </div>
       )}
     </Link>
   )
@@ -87,34 +88,33 @@ export default function Sidebar() {
   if (!mounted || isLoading) return null
 
   return (
-    <div className="fixed left-4 top-1/2 -translate-y-1/2 z-30 md:left-2 md:top-1/2 md:-translate-y-1/2">
-      <div
-        className={`flex flex-col items-center justify-center w-[69px] h-[269px] bg-violet-500] dark:bg-gray-800 rounded-3xl p-6 shadow-lg transition-all duration-700 animate-fadeIn md:w-[50px] md:h-auto md:p-2 md:rounded-3xl
-        `}
-      >
+    <div className="sidebar-container fixed left-4 top-1/2 -translate-y-1/2 z-30 md:left-2 md:top-1/2 md:-translate-y-1/2">
+      <div className="sidebar-bg flex flex-col items-center justify-center w-[50px] h-[200px] rounded-3xl p-6 shadow-2xl transition-all duration-700 animate-slideInLeft border border-white/20 dark:border-slate-700/30 md:w-[50px] md:h-auto md:p-2 md:rounded-3xl">
+        <div className="sidebar-glow absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500"></div>
+
         <SidebarIcon
           icon={<Github size={28} />}
           href="https://github.com/Ahnaf-Shahriar-369"
           delay={0}
-          color="text-white dark:text-white"
+          color="text-gray-800 dark:text-white"
         />
         <SidebarIcon
           icon={<Linkedin size={28} />}
           href="https://linkedin.com"
           delay={0.5}
-          color="text-[#0077b5] dark:text-[#0077b5]"
+          color="text-[#0077b5] dark:text-[#0ea5e9]"
         />
         <SidebarIcon
           icon={<Mail size={28} />}
           href="mailto:ahnafshahriar.dev@protonmail.com"
           delay={1}
-          color="text-orange-500 dark:text-orange-500"
+          color="text-orange-600 dark:text-orange-400"
         />
         <SidebarIcon
           icon={<FileText size={28} />}
           href="https://drive.proton.me/urls/HBH57DYT3W#pt5IXOFVa9a3"
           delay={1.5}
-          color="text-blue-300 dark:text-blue-300"
+          color="text-blue-600 dark:text-blue-300"
         />
       </div>
     </div>
