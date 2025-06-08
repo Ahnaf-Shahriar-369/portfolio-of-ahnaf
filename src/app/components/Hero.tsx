@@ -4,7 +4,6 @@ import Link from "next/link"
 import { ArrowRight, Download } from "lucide-react"
 import styles from "./Hero.module.css"
 import LogoSphere from "./LogoSphere"
-
 export default function Hero() {
   const [isGithubHovered, setIsGithubHovered] = useState(false)
   const [isResumeHovered, setIsResumeHovered] = useState(false)
@@ -14,7 +13,6 @@ export default function Hero() {
   const [isTextChanging, setIsTextChanging] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
-
   const rotatingTexts = [
     "Full-stack Developer",
     "Front-end Developer",
@@ -24,7 +22,6 @@ export default function Hero() {
     "Web Developer",
     "Software Engineer",
   ]
-
   // Loading animation effect
   useEffect(() => {
     const loadingInterval = setInterval(() => {
@@ -37,14 +34,11 @@ export default function Hero() {
         return prev + 2
       })
     }, 50)
-
     return () => clearInterval(loadingInterval)
   }, [])
-
   // Rotating text effect
   useEffect(() => {
     if (!isLoaded) return
-
     const interval = setInterval(() => {
       setIsTextChanging(true)
       setTimeout(() => {
@@ -54,7 +48,6 @@ export default function Hero() {
     }, 3000)
     return () => clearInterval(interval)
   }, [rotatingTexts.length, isLoaded])
-
   if (!isLoaded) {
     return (
       <div className={styles.loadingContainer}>
@@ -80,7 +73,6 @@ export default function Hero() {
       </div>
     )
   }
-
   return (
     <div className={styles.heroContainer}>
       {/* Enhanced Background Effects */}
@@ -90,7 +82,6 @@ export default function Hero() {
         <div className={styles.wave2}></div>
         <div className={styles.wave3}></div>
       </div>
-
       <div className={styles.floatingParticles}>
         <div className={styles.particle1}></div>
         <div className={styles.particle2}></div>
@@ -103,7 +94,6 @@ export default function Hero() {
         <div className={styles.particle9}></div>
         <div className={styles.particle10}></div>
       </div>
-
       {/* Geometric Shapes */}
       <div className={styles.geometricShapes}>
         <div className={styles.shape1}></div>
@@ -111,7 +101,6 @@ export default function Hero() {
         <div className={styles.shape3}></div>
         <div className={styles.shape4}></div>
       </div>
-
       {/* Main Content */}
       <main className={styles.heroMain}>
         {/* Left Side - Text Content with Glassmorphism */}
@@ -125,7 +114,6 @@ export default function Hero() {
               <br />
               Shahriar
             </h1>
-
             <div className={`${styles.perspective} ${styles.fadeInUp} ${styles.delay200}`}>
               <div className={styles.rotatingTextContainer}>
                 <span className={`${styles.rotatingText} ${isTextChanging ? styles.shatterOut : styles.active}`}>
@@ -134,11 +122,9 @@ export default function Hero() {
                 <div className={styles.textGlow}></div>
               </div>
             </div>
-
             <p className={`${styles.subtitleText} ${styles.fadeInUp} ${styles.delay400}`}>
               Full Stack Developer • Next.JS | React | Tailwind CSS | Typescript | NodeJS | MongoDB | ExpressJS | Prisma
             </p>
-
             <div className={`${styles.buttonContainer} ${styles.fadeInUp} ${styles.delay600}`}>
               <Link
                 href="https://github.com/Ahnaf-Shahriar-369"
@@ -154,7 +140,6 @@ export default function Hero() {
                 GitHub{" "}
                 <ArrowRight size={18} className={`${styles.arrowIcon} ${isGithubHovered ? styles.arrowMoved : ""}`} />
               </Link>
-
               <Link
                 href="https://drive.proton.me/urls/HBH57DYT3W#pt5IXOFVa9a3"
                 className={`${styles.buttonEffect} ${styles.resumeButton} ${isResumeClicked ? styles.buttonClicked : ""}`}
@@ -175,7 +160,6 @@ export default function Hero() {
             </div>
           </div>
         </div>
-
         {/* Right Side - Enhanced Tech Sphere with Glassmorphism */}
         <div className={`${styles.techSphereContainer} ${styles.slideInRight}`}>
           <div className={styles.sphereGlassContainer}>
@@ -186,7 +170,6 @@ export default function Hero() {
             <div className={styles.sphereRipple}></div>
             <div className={styles.sphereRipple2}></div>
           </div>
-
           {/* Enhanced Shine Effects */}
           <div className={styles.techSphereShineBottom}></div>
           <div className={styles.techSphereShineHorizontal}></div>
@@ -194,7 +177,6 @@ export default function Hero() {
           <div className={styles.techSphereShineDiagonal}></div>
         </div>
       </main>
-
       {/* Interactive Elements */}
       <div className={styles.interactiveElements}>
         <div className={styles.floatingIcon1}>⚡</div>

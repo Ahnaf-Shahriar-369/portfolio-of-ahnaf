@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
+import "./NavBar.css"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -12,6 +13,7 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const navbarRef = useRef<HTMLDivElement>(null)
+  const observerRef = useRef<IntersectionObserver | null>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,6 +41,48 @@ export default function Navbar() {
     }
   }, [])
 
+  // Intersection Observer for scroll-based navigation
+  useEffect(() => {
+    const sections = ["home", "about", "skills", "projects"]
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -60% 0px", // Trigger when section is 20% from top
+      threshold: [0, 0.25, 0.5, 0.75, 1],
+    }
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      const visibleSections = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+
+      if (visibleSections.length > 0) {
+        const mostVisible = visibleSections[0]
+        const sectionId = mostVisible.target.id
+
+        if (sections.includes(sectionId) && sectionId !== activeLink) {
+          setActiveLink(sectionId)
+        }
+      }
+    }
+
+    observerRef.current = new IntersectionObserver(observerCallback, observerOptions)
+
+    // Observe all sections
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId)
+      if (element && observerRef.current) {
+        observerRef.current.observe(element)
+      }
+    })
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect()
+      }
+    }
+  }, [activeLink])
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
@@ -49,20 +93,59 @@ export default function Navbar() {
 
     const element = document.getElementById(link)
     if (element) {
+      // Temporarily disconnect observer to prevent conflicts during manual navigation
+      if (observerRef.current) {
+        observerRef.current.disconnect()
+      }
+
       element.classList.add("section-active")
       setTimeout(() => {
         element.classList.remove("section-active")
       }, 1000)
 
       element.scrollIntoView({ behavior: "smooth" })
+
+      // Reconnect observer after scroll animation
+      setTimeout(() => {
+        const sections = ["home", "about", "skills", "projects"]
+        const observerOptions = {
+          root: null,
+          rootMargin: "-20% 0px -60% 0px",
+          threshold: [0, 0.25, 0.5, 0.75, 1],
+        }
+
+        const observerCallback = (entries: IntersectionObserverEntry[]) => {
+          const visibleSections = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+
+          if (visibleSections.length > 0) {
+            const mostVisible = visibleSections[0]
+            const sectionId = mostVisible.target.id
+
+            if (sections.includes(sectionId) && sectionId !== activeLink) {
+              setActiveLink(sectionId)
+            }
+          }
+        }
+
+        observerRef.current = new IntersectionObserver(observerCallback, observerOptions)
+
+        sections.forEach((sectionId) => {
+          const element = document.getElementById(sectionId)
+          if (element && observerRef.current) {
+            observerRef.current.observe(element)
+          }
+        })
+      }, 1500)
     }
   }
 
   if (isLoading) {
     return (
       <div className="fixed top-[39px] left-0 right-0 z-40 flex justify-center items-center">
-        <div className="w-[200px] h-[60px] backdrop-blur-xl bg-white/20 rounded-full shadow-lg flex justify-center items-center">
-          <p className="text-white text-lg font-medium loading-dots">Loading</p>
+        <div className="navbar-loading w-[200px] h-[60px] backdrop-blur-xl rounded-full shadow-lg flex justify-center items-center">
+          <p className="navbar-loading-text text-lg font-medium loading-dots">Loading</p>
         </div>
       </div>
     )
@@ -71,26 +154,24 @@ export default function Navbar() {
   return (
     <nav
       ref={navbarRef}
-      className={`animate-float fixed top-[9px] left-0 right-0 z-40 transition-all duration-700 ${scrolled ? "py-2" : "py-4"} ${
+      className={`navbar-container animate-float fixed top-[9px] left-0 right-0 z-40 transition-all duration-700 ${scrolled ? "py-2" : "py-4"} ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
       }`}
     >
       <div className="container mx-auto px-4">
         <div
-          className={`relative w-[600px] max-w-full mx-auto backdrop-blur-2xl 
-          bg-white/20
-          text-white
+          className={`navbar-bg relative w-[600px] max-w-full mx-auto 
           rounded-full shadow-lg 
           transition-all duration-500 ease-in-out
-          border border-white/30
-          hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]
-          before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-b before:from-white/30 before:to-transparent before:pointer-events-none before:z-[-1]
-          after:absolute after:inset-0 after:rounded-full after:shadow-[inset_0_0_10px_rgba(255,255,255,0.2)] after:pointer-events-none after:z-[-1]
+          border border-white/20
+          hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]
           ${scrolled ? "scale-95" : "scale-100"}
           ${isMenuOpen ? "!rounded-3xl" : "rounded-full"}
           `}
         >
-          <div className="flex items-center justify-between px-6 py-2">
+          <div className="navbar-glow absolute inset-0 rounded-full opacity-0 transition-opacity duration-500"></div>
+
+          <div className="flex items-center justify-between px-6 py-2 relative z-10">
             <div className="flex items-center space-x-3 flex-shrink-0 mr-6">
               <div className="relative w-10 h-10 overflow-hidden rounded-full transition-transform duration-500 hover:scale-110 group">
                 <Image
@@ -108,37 +189,25 @@ export default function Navbar() {
               </h1>
             </div>
 
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-3">
               {["home", "about", "skills", "projects"].map((link) => (
-                <Link
-                  key={link}
-                  href={`#${link}`}
-                  onClick={() => handleLinkClick(link)}
-                  className={`relative text-base font-medium transition-all duration-500 hover:text-purple-500 group overflow-hidden`}
-                >
-                  <span
-                    className={`capitalize transition-transform duration-500 inline-block ${
-                      activeLink === link ? "text-purple-500" : ""
-                    } group-hover:translate-y-[-100%]`}
+                <div key={link} className="nav-link-container">
+                  <Link
+                    href={`#${link}`}
+                    onClick={() => handleLinkClick(link)}
+                    className={`navbar-link ${activeLink === link ? "navbar-link-active" : ""}`}
                   >
-                    {link}
-                  </span>
-                  <span className="absolute left-0 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 capitalize text-purple-500">
-                    {link}
-                  </span>
-                  <span
-                    className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-500 group-hover:w-full ${
-                      activeLink === link ? "w-full" : "w-0"
-                    }`}
-                  ></span>
-                </Link>
+                    <span className="capitalize">{link}</span>
+                  </Link>
+                  <div className={`nav-link-bg ${activeLink === link ? "nav-link-active-bg" : ""}`}></div>
+                </div>
               ))}
             </div>
 
             <div className="md:hidden">
               <button
                 onClick={toggleMenu}
-                className={`p-2 rounded-full transition-all duration-300 hover:bg-white/20 active:scale-95`}
+                className={`navbar-menu-button p-2 rounded-full transition-all duration-300 hover:bg-white/20 active:scale-95 relative z-20`}
                 aria-label="Toggle menu"
               >
                 {isMenuOpen ? (
@@ -151,24 +220,28 @@ export default function Navbar() {
           </div>
 
           <div
-            className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
+            className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out relative z-10 ${
               isMenuOpen ? "max-h-[200px] opacity-100 mb-2" : "max-h-0 opacity-0"
             }`}
           >
-            <div className={`flex flex-col space-y-2 py-2 px-4 mx-2 mb-2 rounded-xl backdrop-blur-md bg-white/20`}>
+            <div className={`navbar-dropdown flex flex-col space-y-2 py-2 px-4 mx-2 mb-2 rounded-xl`}>
               {["home", "about", "skills", "projects"].map((link) => (
-                <Link
-                  key={link}
-                  href={`#${link}`}
-                  onClick={() => handleLinkClick(link)}
-                  className={`px-3 py-2 rounded-md transition-all duration-300 ${
-                    activeLink === link
-                      ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white scale-105 shadow-md"
-                      : "hover:bg-white/20 hover:scale-105"
-                  }`}
-                >
-                  <span className="capitalize">{link}</span>
-                </Link>
+                <div key={link} className="nav-link-mobile-container">
+                  <Link
+                    href={`#${link}`}
+                    onClick={() => handleLinkClick(link)}
+                    className={`navbar-dropdown-link px-3 py-2 rounded-md transition-all duration-300 relative z-10 cursor-pointer ${
+                      activeLink === link ? "text-white" : "hover:bg-white/20 hover:scale-105"
+                    }`}
+                  >
+                    <span className="capitalize">{link}</span>
+                  </Link>
+                  <div
+                    className={`absolute inset-0 rounded-md transition-all duration-300 ${
+                      activeLink === link ? "nav-link-active-bg-mobile" : "opacity-0"
+                    }`}
+                  ></div>
+                </div>
               ))}
             </div>
           </div>

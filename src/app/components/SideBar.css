@@ -1,230 +1,365 @@
-/* Glassmorphic Sidebar Styles */
+/* Sidebar container positions */
+.sidebar-outer {
+  position: fixed;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-/* Light mode glassmorphic background */
+@media (max-width: 768px) {
+  .sidebar-outer {
+    left: 0.5rem;
+  }
+}
+
+/* Glassmorphic sidebar background for light and dark mode */
 .sidebar-bg {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37), inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0
-    rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 59px;
+  height: 259px;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  
+  /* Glassmorphic effect - Light mode */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(168, 85, 247, 0.1);
+  
+  /* Smooth transitions */
+  transition: 
+    background 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+    box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+    border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  animation: fadeIn 0.7s, sidebarGlow 8s infinite alternate;
   position: relative;
   overflow: hidden;
 }
 
-/* Dark mode glassmorphic background */
+/* Glassmorphic effect - Dark mode */
 html.dark .sidebar-bg {
-  background: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0
-    rgba(255, 255, 255, 0.05);
+  background: rgba(15, 15, 35, 0.3);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 40px rgba(168, 85, 247, 0.2);
 }
 
-/* Sidebar container animations */
-.sidebar-container {
-  animation: slideInLeft 0.8s ease-out forwards;
+/* Sidebar shine effect */
+.sidebar-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(236, 72, 153, 0.4),
+    rgba(168, 85, 247, 0.4),
+    rgba(59, 130, 246, 0.4),
+    transparent
+  );
+  animation: shimmer 3s ease-in-out infinite;
 }
 
-/* Sidebar icon styling */
-.sidebar-icon {
-  position: relative;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+/* Sidebar gradient border glow */
+.sidebar-bg::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    #ec4899,
+    #8b5cf6,
+    #3b82f6,
+    #10b981,
+    #f59e0b,
+    #ec4899
+  );
+  background-size: 300% 300%;
+  border-radius: 1.6rem;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: gradientShift 8s ease infinite;
 }
 
-html.dark .sidebar-icon {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+.sidebar-bg:hover::after {
+  opacity: 0.1;
 }
 
-/* Icon wrapper for better hover effects */
-.icon-wrapper {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+html.dark .sidebar-bg:hover::after {
+  opacity: 0.15;
 }
 
-.sidebar-icon:hover .icon-wrapper {
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-  transform: translateY(-1px);
-}
-
-html.dark .sidebar-icon:hover .icon-wrapper {
-  filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.1));
-}
-
-/* Enhanced hover effects for sidebar icons */
-.sidebar-icon:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 0 20px rgba(255, 255, 255, 0.1);
-  transform: scale(1.1) rotate(3deg) translateY(-2px);
-}
-
-html.dark .sidebar-icon:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.05);
-}
-
-/* Active/clicked state */
-.sidebar-icon:active {
-  transform: scale(0.95) rotate(-1deg);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Badge styling */
-.badge {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  animation: badgePulse 2s infinite;
-}
-
-/* Tooltip styling */
-.tooltip {
-  animation: tooltipSlideIn 0.3s ease-out forwards;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-html.dark .tooltip {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-}
-
-/* Sidebar glow effect */
-.sidebar-glow {
-  background: linear-gradient(45deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
-  filter: blur(20px);
-}
-
-html.dark .sidebar-glow {
-  background: linear-gradient(45deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.2));
-}
-
-.sidebar-container:hover .sidebar-glow {
-  opacity: 1;
-  animation: glowPulse 3s ease-in-out infinite;
-}
-
-/* Keyframe animations */
-@keyframes slideInLeft {
-  0% {
-    transform: translateX(-100px) translateY(-50%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0) translateY(-50%);
-    opacity: 1;
-  }
-}
-
-@keyframes badgePulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
-}
-
-@keyframes tooltipSlideIn {
-  0% {
-    transform: translateX(-10px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes glowPulse {
-  0%,
-  100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.05);
-  }
-}
-
-/* Floating animation for icons */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-3px);
-  }
-}
-
-.sidebar-icon {
-  animation: float 3s ease-in-out infinite;
-}
-
-.sidebar-icon:nth-child(1) {
-  animation-delay: 0s;
-}
-.sidebar-icon:nth-child(2) {
-  animation-delay: 0.5s;
-}
-.sidebar-icon:nth-child(3) {
-  animation-delay: 1s;
-}
-.sidebar-icon:nth-child(4) {
-  animation-delay: 1.5s;
-}
-
-/* Responsive adjustments */
 @media (max-width: 768px) {
-  .sidebar-container {
-    left: 0.5rem;
-  }
-
   .sidebar-bg {
     width: 50px;
     height: auto;
     padding: 0.5rem;
-  }
-
-  .sidebar-icon {
-    width: 2.5rem;
-    height: 3rem;
-    margin-bottom: 1rem;
+    border-radius: 1.5rem;
   }
 }
 
-/* Smooth transitions for theme switching */
-.sidebar-bg,
-.sidebar-icon,
-.tooltip {
-  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+/* Sidebar icon styles with glassmorphic effect */
+.sidebar-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 48px;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  
+  /* Glassmorphic effect for icons - Light mode */
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  
+  transition: 
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+    filter 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  animation: float 3.69s ease-in-out infinite;
+  color: #333;
+  text-decoration: none;
 }
 
-/* Enhanced transitions for theme switching and colors */
-.icon-wrapper {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+/* Glassmorphic effect for icons - Dark mode */
+html.dark .sidebar-icon {
+  background: rgba(30, 30, 60, 0.5);
+  border: 1px solid rgba(168, 85, 247, 0.25);
 }
 
-/* Specific color transitions */
-.sidebar-icon svg {
-  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.sidebar-icon:last-child {
+  margin-bottom: 0;
 }
 
-/* Enhanced focus states for accessibility */
-.sidebar-icon:focus-visible {
-  outline: 2px solid rgba(59, 130, 246, 0.5);
-  outline-offset: 2px;
+/* Default icon color (dark gray in light, light gray in dark) */
+.sidebar-icon-default {
+  color: #333;
 }
 
-html.dark .sidebar-icon:focus-visible {
-  outline-color: rgba(139, 92, 246, 0.5);
+html.dark .sidebar-icon-default {
+  color: #e2e8f0;
+}
+
+/* Custom icon colors with enhanced vibrancy */
+.sidebar-icon-linkedin {
+  color: #0077b5;
+}
+
+html.dark .sidebar-icon-linkedin {
+  color: #0ea5e9; /* Brighter blue in dark mode */
+}
+
+.sidebar-icon-mail {
+  color: #f97316; /* orange-500 */
+}
+
+html.dark .sidebar-icon-mail {
+  color: #fb923c; /* Brighter orange in dark mode */
+}
+
+.sidebar-icon-file {
+  color: #38bdf8; /* blue-300 */
+}
+
+html.dark .sidebar-icon-file {
+  color: #7dd3fc; /* Brighter blue in dark mode */
+}
+
+/* Enhanced hover and click effects */
+.sidebar-icon:hover {
+  transform: scale(1.1) translateY(-3px);
+  filter: brightness(1.25);
+  box-shadow: 
+    0 10px 25px rgba(168, 85, 247, 0.2),
+    0 0 15px rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.4);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+html.dark .sidebar-icon:hover {
+  background: rgba(30, 30, 60, 0.7);
+  box-shadow: 
+    0 10px 25px rgba(168, 85, 247, 0.3),
+    0 0 15px rgba(168, 85, 247, 0.25);
+}
+
+.sidebar-icon-clicked {
+  transform: scale(0.9);
+  filter: brightness(0.75);
+  box-shadow: 
+    0 5px 15px rgba(168, 85, 247, 0.1),
+    0 0 5px rgba(168, 85, 247, 0.1);
+}
+
+/* Badge for notifications with glassmorphic effect */
+.sidebar-icon-badge {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #ec4899, #f97316);
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(236, 72, 153, 0.4);
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+/* Tooltip on hover with glassmorphic effect */
+.sidebar-icon-tooltip {
+  position: absolute;
+  left: 3.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  
+  /* Glassmorphic tooltip - Light mode */
+  color: #1f2937;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    0 0 20px rgba(168, 85, 247, 0.15);
+  
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  animation: fadeIn 0.2s;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+/* Glassmorphic tooltip - Dark mode */
+html.dark .sidebar-icon-tooltip {
+  color: #f3f4f6;
+  background: rgba(15, 15, 35, 0.7);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(168, 85, 247, 0.25);
+}
+
+/* Enhanced animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translateX(-100%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes sidebarGlow {
+  0%, 100% {
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      0 0 40px rgba(168, 85, 247, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      0 0 60px rgba(236, 72, 153, 0.15);
+  }
+}
+
+@keyframes sidebarGlow {
+  0%, 100% {
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      0 0 40px rgba(168, 85, 247, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      0 0 60px rgba(236, 72, 153, 0.15);
+  }
+}
+
+/* In your dark mode selector, override the animation property if needed */
+html.dark .sidebar-bg {
+  
+
+  animation: fadeIn 0.7s, sidebarGlow 8s infinite alternate;
+
+
+  /* Optionally override animation properties here */
+
+  
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 2px 8px rgba(236, 72, 153, 0.4);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(236, 72, 153, 0.6);
+  }
+}
+
+/* Theme transition animation */
+html.dark,
+html.dark * {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.5s;
 }
