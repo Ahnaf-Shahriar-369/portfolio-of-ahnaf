@@ -3,10 +3,7 @@
 @import 'tailwindcss';
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-/* html, body, #__next {
-  cursor: none; 
-} */
+
 
 html, body {
   margin: 0;
